@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route, BrowserRouter as Router, Navigate } from 'react-router-dom';
+import 'font-awesome/css/font-awesome.min.css';
 
 // Import your page components
 import Home from '../Home/Home';

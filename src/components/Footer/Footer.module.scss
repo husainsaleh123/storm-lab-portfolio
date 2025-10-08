@@ -1,0 +1,113 @@
+.footer {
+  width: 100%;
+  text-align: center;
+  background-color: #0d53d3;
+  padding: 30px 0;
+  color: white;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.msg {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+h3 {
+  margin-top: 25px;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.copyright {
+  font-size: 14px;
+  margin-top: 30px;
+}
+
+/* Social media icons styling */
+.socialIcons {
+  display: flex;
+  justify-content: center; /* Align horizontally in the center */
+  align-items: center;  /* Vertically align the icons */
+  margin-top: 15px;
+  gap: 20px;  /* Add space between the icons */
+}
+
+.instagram, .whatsapp, .linkedin, .facebook {
+  font-size: 24px;
+  color: white;
+  transition: color 0.3s ease;
+  padding: 12px;
+  border: 2px solid white;
+  border-radius: 50%;  /* Circular icons */
+  width: 50px;  /* Icon size */
+  height: 50px;  /* Icon size */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.instagram:hover, .whatsapp:hover, .linkedin:hover, .facebook:hover {
+  background-color: #f1f1f1;
+  color: #0d53d3;  /* Hover effect */
+}
+
+
+/* Responsive Design */
+
+/* Tablet - Screen size up to 1024px */
+@media (max-width: 1024px) {
+  .footer {
+    padding: 25px 0;
+  }
+
+  .socialIcons {
+    gap: 15px;  /* Slightly smaller gap between icons */
+  }
+
+  .instagram, .whatsapp, .linkedin, .facebook {
+    width: 45px;  /* Smaller icons */
+    height: 45px;
+  }
+
+  .msg {
+    font-size: 14px;  /* Slightly smaller text */
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  .copyright {
+    font-size: 12px;
+  }
+}
+
+/* Mobile - Screen size up to 800px */
+@media (max-width: 800px) {
+  .footer {
+    padding: 20px 0;
+  }
+
+  .socialIcons {
+    gap: 10px;  /* Reduced gap for small screens */
+  }
+
+  .instagram, .whatsapp, .linkedin, .facebook {
+    width: 40px;  /* Even smaller icons */
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .msg {
+    font-size: 12px;  /* Further reduced text size */
+  }
+
+  h3 {
+    font-size: 16px;
+  }
+
+  .copyright {
+    font-size: 12px;
+  }
+}
