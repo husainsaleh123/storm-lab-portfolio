@@ -4,7 +4,7 @@
   --tan-1: #FBF9F6;
   --tan-2: #E7E2DD;
   --tan-3: #E2D9D1;
-  --tan-4: #D3C1AE;
+  --tan-4: #ffa13d;
   --orange: orangered;
   --text-light: #968c84;
   --text-dark: black;
@@ -21,10 +21,6 @@ $secondary-color: #2ecc71;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  
-  &:hover {
-    background-color: darken($bg-color, 10%);
-  }
 }
 
 // Global styles
@@ -47,10 +43,6 @@ body {
 // Utility classes
 .btn-primary {
   @include button-style($primary-color);
-}
-
-.btn-secondary {
-  @include button-style($secondary-color);
 }
 
 // Layout utilities
