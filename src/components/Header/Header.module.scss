@@ -1,0 +1,150 @@
+html, body{
+    margin:0;
+    padding:0;
+    border-style: border-box;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #0d53d3;  // Blue background
+    padding: 10px 30px;  // Adjust padding for spacing
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.logo {
+    width: 40px;
+    height: auto;
+}
+
+.nav {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navItem {
+    margin: 0 10px;
+    color: white;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 10px 20px;  // Same padding for all items to avoid shifting
+}
+
+/* Target the Link component directly */
+.navItem a {
+  color: inherit;  /* Inherit the color from the parent (navItem) */
+  text-decoration: none;  /* Remove the default underline */
+}
+
+/* Alternatively, globally for all Link components */
+a {
+  color: inherit;  /* Remove the default purple color */
+  text-decoration: none;  /* Remove the underline */
+}
+
+
+.navItem:hover{
+    color: #f1f1f1;  // Change color on hover
+    text-decoration: underline;
+}
+
+.navItem::after {
+  content: '';  /* Empty content to create the pseudo-element */
+  position: absolute;
+  bottom: -5px;  /* Add space between the text and underline (adjust value as needed) */
+  left: 0;
+  width: 0%;  /* Start with no width */
+  height: 3px;  /* Set the thickness of the underline */
+  background-color: #f1f1f1;  /* Color of the underline */
+  transition: width 0.3s ease-in-out;  /* Animate the width on hover */
+}
+
+.active {
+  background-color: #ffffff;  // White background for the active item
+  color: #0d53d3;  // Blue text for active item
+  border-radius: 15px;  // Rounded corners for active item
+  font-weight: bold;  // Bold text for active item
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);  // Optional shadow effect for active item
+}
+
+.navItem.active::after {
+    text-decoration: none;
+}
+
+.navItem.active:hover{
+    color: #0d53d3;  // Change color on hover
+    text-decoration: none;
+}
+
+/* Hamburger icon button */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+
+@media (max-width: 1024px) {
+    .navItem {
+        margin: 0 8px;
+        color: white;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        padding: 8px 16px;  
+    }
+
+    .active {
+        background-color: #ffffff;  // White background for the active item
+        color: #0d53d3;  // Blue text for active item
+        border-radius: 15px;  // Rounded corners for active item
+        font-weight: bold;  // Bold text for active item
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);  // Optional shadow effect for active item
+    }
+
+    .navItem.active::after {
+        text-decoration: none;
+    }
+
+    .navItem.active:hover{
+        color: #0d53d3;  // Change color on hover
+        text-decoration: none;
+    }
+}
+
+@media (max-width: 800px) {
+  .hamburger {
+    display: block;  /* Show hamburger icon */
+  }
+
+  .nav {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;  /* Adjust based on header height */
+    right: 0;
+    background-color: #0d53d3;
+    width: 100%;
+    padding: 20px;
+    transform: translateX(100%); /* Hidden by default */
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .nav.navOpen {
+    transform: translateX(0); /* Slide in menu */
+  }
+
+  .navItem {
+    margin: 10px 0;  /* Vertical spacing in mobile menu */
+  }
+}
