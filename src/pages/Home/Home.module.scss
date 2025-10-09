@@ -97,7 +97,7 @@ main {
 
   .deliver {
     font-weight: 900;
-    font-size: 48px;
+    font-size: 44px;
     margin-left: 30px;
   }
 
@@ -107,8 +107,8 @@ main {
   }
 
   .right {
-    width: 100%;
-    margin-right: 0;
+    width: 60%;
+    margin-bottom: 40px;
     margin-top: 20px;
     order: -1;  // Move image to the top of the left section
     display: flex;
@@ -149,8 +149,9 @@ main {
   }
 
   .right {
-    width: 100%;
-    margin: 0 auto;
+    width: 70%;
+    margin-bottom: 20px;
+    margin-top: 20px;
     order: -1;  // Move image to the top of the left section
     display: flex;
     justify-content: center;  // Center the image horizontally
