@@ -1,0 +1,203 @@
+main {
+    min-height: 600px;
+    background-color: #F0F0F0;
+}
+
+.welcomeSection {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 50px;
+    width: 100%;
+}
+
+.left {
+    width: 60%;
+    margin-left: 80px;
+}
+
+.welcome {
+  font-weight: 500;
+  font-size: 36px;
+  color: #000000;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.deliver {
+   font-size: 54px;
+   font-family: 'JetBrains Mono', monospace;
+   line-height: 1.75;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+.contactButton,
+.viewButton {
+  padding: 15px 30px;
+  font-size: 20px;
+  border: none;
+  margin-right: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.contactButton {
+  background-color: none;
+  border: 3px solid #0d53d3;
+  font-weight: 700;
+  color: #0d53d3;
+  border-radius: 10px;
+}
+
+.viewButton {
+  padding: 17px 34px;
+  background-color: #0d53d3;
+  color: white;
+  border-radius: 10px;
+}
+
+.contactButton:hover,
+.viewButton:hover {
+  opacity: 0.8;
+}
+
+.right {
+  margin-right: 30px;
+  margin-top: 70px;
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageContainer {
+  width: 75%;
+  height: auto;
+}
+
+.logo {
+  width: 100%;
+  height: auto;
+}
+
+/* Tablet and Mobile responsiveness */
+@media (max-width: 1024px) {
+  .welcomeSection {
+    flex-direction: column;
+    padding: 30px;
+  }
+
+  .welcome {
+    font-size: 36px;
+    margin-left: 30px;
+  }
+
+  .deliver {
+    font-weight: 900;
+    font-size: 48px;
+    margin-left: 30px;
+  }
+
+  .left {
+    width: 100%;
+    text-align: left;  // Left align text on tablets
+  }
+
+  .right {
+    width: 100%;
+    margin-right: 0;
+    margin-top: 20px;
+    order: -1;  // Move image to the top of the left section
+    display: flex;
+    justify-content: center;  // Center horizontally
+    align-items: center;  // Center vertically
+  }
+
+  .logo {
+    margin: 60px auto 0;  // Center the image horizontally
+    height: auto;  // Maintain aspect ratio
+  }
+
+  .contactButton {
+    margin-left: 30px;
+    padding: 12px 24px;
+    font-size: 18px;
+    margin-bottom: 50px;
+  }
+
+  .viewButton {
+    padding: 15px 30px;
+    font-size: 18px;
+    margin-bottom: 50px;
+  }
+}
+
+@media (max-width: 800px) {
+  .welcomeSection {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .left {
+    width: 100%;
+    margin-left: 30px;  // Keep margin-left as requested for mobile
+    margin-bottom: 50px;
+    text-align: left;  // Left align text on mobile
+  }
+
+  .right {
+    width: 100%;
+    margin: 0 auto;
+    order: -1;  // Move image to the top of the left section
+    display: flex;
+    justify-content: center;  // Center the image horizontally
+    align-items: center;  // Center the image vertically
+  }
+
+  .logo {
+    margin-bottom: 20px;
+  }
+
+  .welcome {
+    font-size: 28px;
+    margin-left: 30px;
+  }
+
+  .deliver {
+    font-weight: 900;
+    font-size: 32px;
+    margin-left: 30px;
+  }
+
+  .contactButton {
+    margin-left: 30px;
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+
+  .viewButton {
+    padding: 13px 26px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome {
+    font-size: 24px;
+    margin-left: 30px;
+  }
+
+  .deliver {
+    font-size: 40px;
+    margin-left: 30px;
+  }
+
+  .contactButton,
+  .viewButton {
+    padding: 8px 18px;
+    font-size: 14px;
+  }
+}

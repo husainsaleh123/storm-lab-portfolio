@@ -1,9 +1,10 @@
 .footer {
+  margin: 0;
   width: 100%;
   text-align: center;
   background-color: #0d53d3;
   padding: 30px 0;
-  color: white;
+  color: #F0F0F0;
   font-family: 'JetBrains Mono', monospace;
 }
 
@@ -34,10 +35,10 @@ h3 {
 
 .instagram, .whatsapp, .linkedin, .facebook {
   font-size: 24px;
-  color: white;
+  color: #F0F0F0;
   transition: color 0.3s ease;
   padding: 12px;
-  border: 2px solid white;
+  border: 2px solid #F0F0F0;
   border-radius: 50%;  /* Circular icons */
   width: 50px;  /* Icon size */
   height: 50px;  /* Icon size */
@@ -48,7 +49,7 @@ h3 {
 
 
 .instagram:hover, .whatsapp:hover, .linkedin:hover, .facebook:hover {
-  background-color: #f1f1f1;
+  background-color: #F0F0F0;
   color: #0d53d3;  /* Hover effect */
 }
 

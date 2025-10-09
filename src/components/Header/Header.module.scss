@@ -5,6 +5,8 @@ html, body{
 }
 
 .header {
+    padding: 0;
+    margin: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -12,6 +14,9 @@ html, body{
     padding: 10px 30px;  // Adjust padding for spacing
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     font-family: 'JetBrains Mono', monospace;
+    position: sticky;  /* Keep the header at the top */
+    top: 0;  /* Stick the header to the top */
+    z-index: 1000;  /* Ensure it stays above other content */
 }
 
 .logo {
@@ -28,7 +33,7 @@ html, body{
 
 .navItem {
     margin: 0 10px;
-    color: white;
+    color: #EAEAEA;
     font-family: 'JetBrains Mono', monospace;
     font-size: 18px;
     font-weight: 500;
@@ -50,7 +55,7 @@ a {
 
 
 .navItem:hover{
-    color: #f1f1f1;  // Change color on hover
+    color: #F0F0F0;  // Change color on hover
     text-decoration: underline;
 }
 
@@ -61,12 +66,12 @@ a {
   left: 0;
   width: 0%;  /* Start with no width */
   height: 3px;  /* Set the thickness of the underline */
-  background-color: #f1f1f1;  /* Color of the underline */
+  background-color: #F0F0F0;  /* Color of the underline */
   transition: width 0.3s ease-in-out;  /* Animate the width on hover */
 }
 
 .active {
-  background-color: #ffffff;  // White background for the active item
+  background-color: #F0F0F0;  // White background for the active item
   color: #0d53d3;  // Blue text for active item
   border-radius: 15px;  // Rounded corners for active item
   font-weight: bold;  // Bold text for active item
@@ -88,7 +93,7 @@ a {
   font-size: 28px;
   background: none;
   border: none;
-  color: white;
+  color: #F0F0F0;
   cursor: pointer;
 }
 
@@ -96,7 +101,7 @@ a {
 @media (max-width: 1024px) {
     .navItem {
         margin: 0 8px;
-        color: white;
+        color: #F0F0F0;
         font-family: 'JetBrains Mono', monospace;
         font-size: 16px;
         font-weight: 500;
@@ -105,7 +110,7 @@ a {
     }
 
     .active {
-        background-color: #ffffff;  // White background for the active item
+        background-color: #F0F0F0;  // White background for the active item
         color: #0d53d3;  // Blue text for active item
         border-radius: 15px;  // Rounded corners for active item
         font-weight: bold;  // Bold text for active item
