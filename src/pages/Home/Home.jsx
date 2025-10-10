@@ -21,6 +21,41 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      <div className={styles.section}>
+          <div className={styles.line}></div>
+          <span className={styles.title}>What can I offer?</span>
+          <div className={styles.line}></div>
+      </div>
+      
+      <div className={styles.cards}>
+
+        <div className={styles.card}>
+          <h3>Custom Website Design</h3>
+          <img className={styles.serviceImg} src="src/assets/images/web-design.png" alt="service" />
+          <p>I Create fully customized websites tailored to the client's needs, including responsive design, and user-friendly navigation.</p>
+        </div>
+
+        <div className={styles.card}>
+          <h3>Website Redesign and Optimization</h3>
+          <img className={styles.serviceImg} src="src/assets/images/Redesign.png" alt="service" />
+          <p>I help clients refresh their outdated websites with modern designs, better navigation, and improved performance.</p>
+        </div>
+
+        <div className={styles.card}>
+          <h3>User Interface & Experience Design</h3>
+          <img className={styles.serviceImg} src="src/assets/images/UI_UX.png" alt="service" />
+          <p>I help clients improve the user experience and interface of their websites to make them more user-friendly.</p>
+        </div>
+
+        <div className={styles.card}>
+          <h3>Landing Page Optimization</h3>
+          <img className={styles.serviceImg} src="src/assets/images/website.png" alt="service" />
+          <p>Design high-converting landing pages, with focus on elements like call-to-action buttons and engaging design.</p>
+        </div>
+
+      </div>
+
     </main>
   );
 };
