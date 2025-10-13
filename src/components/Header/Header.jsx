@@ -1,59 +1,83 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';  // Import Link from react-router-dom
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom'; // Import useLocation for current route
 import styles from "./Header.module.scss";
 
 const Header = () => {
-  // State to keep track of the active page
-  const [activePage, setActivePage] = useState('home'); // Default to 'home'
+  const location = useLocation(); // Get current route
   const [menuOpen, setMenuOpen] = useState(false); // Track mobile menu open state
 
-  // Function to set the active page
-  const handleSetActivePage = (page) => {
-    setActivePage(page);
-    setMenuOpen(false); // Closes the menu when clicking a page
+  // Determine the active page based on the current route
+  const getActivePage = () => {
+    switch (location.pathname) {
+      case '/about':
+        return 'about';
+      case '/projects':
+        return 'projects';
+      case '/reviews':
+        return 'reviews';
+      case '/contact':
+      case '/show-contact': // Add '/show-contact' to also highlight the Contact page
+        return 'contact';
+      default:
+        return 'home';
+    }
   };
+
+  const [activePage, setActivePage] = useState(getActivePage()); // Set active page based on the route
+
+  useEffect(() => {
+    // Update the active page when the location changes
+    setActivePage(getActivePage());
+  }, [location]); // Re-run when location changes
 
   return (
     <header className={styles.header}>
-      <Link to="/"><img className={styles.logo} src="src/assets/images/logo.png" alt="Logo" /></Link>
-      
-       {/* Hamburger button */}
+      <Link to="/">
+        <img className={styles.logo} src="/src/assets/images/logo.png" alt="Logo" />
+      </Link>
+
+      {/* Hamburger button for mobile */}
       <button
         className={styles.hamburger}
-        onClick={() => setMenuOpen(!menuOpen)}
+        onClick={() => setMenuOpen(!menuOpen)} // Toggle menu open/close
         aria-label="Toggle menu"
       >
         ☰
       </button>
-      
+
       <ul className={`${styles.nav} ${menuOpen ? styles.navOpen : ''}`}>
-        <li 
-          className={`${styles.navItem} ${activePage === 'home' ? styles.active : ''}`} 
-          onClick={() => handleSetActivePage('home')}
+        {/* Home Link */}
+        <li
+          className={`${styles.navItem} ${activePage === 'home' ? styles.active : ''}`}
+          onClick={() => setMenuOpen(false)} // Close menu on click
         >
           <Link to="/">Home</Link>
         </li>
-        <li 
-          className={`${styles.navItem} ${activePage === 'about' ? styles.active : ''}`} 
-          onClick={() => handleSetActivePage('about')}
+        {/* About Link */}
+        <li
+          className={`${styles.navItem} ${activePage === 'about' ? styles.active : ''}`}
+          onClick={() => setMenuOpen(false)}
         >
           <Link to="/about">About</Link>
         </li>
-        <li 
-          className={`${styles.navItem} ${activePage === 'projects' ? styles.active : ''}`} 
-          onClick={() => handleSetActivePage('projects')}
+        {/* Projects Link */}
+        <li
+          className={`${styles.navItem} ${activePage === 'projects' ? styles.active : ''}`}
+          onClick={() => setMenuOpen(false)}
         >
-           <Link to="/projects">Projects</Link>
+          <Link to="/projects">Projects</Link>
         </li>
-        <li 
-          className={`${styles.navItem} ${activePage === 'reviews' ? styles.active : ''}`} 
-          onClick={() => handleSetActivePage('reviews')}
+        {/* Reviews Link */}
+        <li
+          className={`${styles.navItem} ${activePage === 'reviews' ? styles.active : ''}`}
+          onClick={() => setMenuOpen(false)}
         >
           <Link to="/reviews">Reviews</Link>
         </li>
-        <li 
-          className={`${styles.navItem} ${activePage === 'contact' ? styles.active : ''}`} 
-          onClick={() => handleSetActivePage('contact')}
+        {/* Contact Link */}
+        <li
+          className={`${styles.navItem} ${activePage === 'contact' ? styles.active : ''}`}
+          onClick={() => setMenuOpen(false)}
         >
           <Link to="/contact">Contact</Link>
         </li>

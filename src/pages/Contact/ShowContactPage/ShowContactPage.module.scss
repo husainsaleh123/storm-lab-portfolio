@@ -1,0 +1,72 @@
+/* Main layout */
+.wrapper {
+  min-height: 70vh;
+  display: grid;
+  place-items: start center;
+  padding: 24px 16px;
+  background: #f0f3fa;
+}
+
+.heading {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 30px;
+  margin: 60px 0 50px;
+  color: #111;
+  text-align: center;
+}
+
+/* Contact details container */
+.contactDetails {
+  width: 100%;
+  max-width: 50%;
+  background: rgba(13, 83, 211, 0.1);
+  border-radius: 14px;
+  padding: 30px 28px 40px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  margin-bottom: 60px;
+}
+
+/* Contact info text styling */
+.contactDetails p {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+}
+
+.contactDetails p strong {
+  color: #0d53d3;
+}
+
+/* Back Button styling */
+.backButton {
+  display: block;
+  margin: 30px auto;
+  width: fit-content;
+  padding: 10px 16px;
+  border: 0;
+  background: linear-gradient(180deg, #1b74ff, #0d53d3);
+  color: #fff;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  border-radius: 8px;
+  transition: transform 0.05s ease, filter 0.2s ease;
+  cursor: pointer;
+}
+
+.backButton:active {
+  transform: translateY(1px);
+}
+
+@media (max-width: 900px) {
+  .contactDetails {
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 600px) {
+  .contactDetails {
+    max-width: 94vw;
+  }
+}

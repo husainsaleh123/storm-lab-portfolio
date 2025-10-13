@@ -6,21 +6,30 @@ const contactSchema = new mongoose.Schema({
   name: { type: String, required: true },
 
   // User's email
-  email: { type: String, required: true, match: /.+\@.+\..+/ }, // Email validation
+  email: { type: String, required: true, match: /.+\@.+\..+/ },  // Email validation
 
   // Message content of the contact form
   message: { type: String, required: true },
 
-  // Optional: Subject of the contact message
-  subject: { type: String, required: false },
+  // Required: Subject of the contact message
+  subject: { type: String, required: true },  // Now required
 
-  // Optional: A field for storing a phone number (if the user provides one)
+  // Required: Phone number (if the user provides one)
   phone: { 
     type: String, 
-    required: false,  // Phone number is optional
-    match: /^[0-9]{8}$/,  // Must be exactly 8 digits
-    message: 'Phone number must be exactly 8 digits.'
-  }
+    required: true,  // Now required
+    match: /^[\d+()[\]\-\s]{6,20}$/,  // Phone number validation
+    message: 'Phone number must be a valid format.' 
+  },
+
+  // Optional: Service type selection (dropdown)
+  serviceType: {
+    type: String,
+    required: false,  // Optional
+    enum: ['Website Redesign & Optimization', 'UI/UX Design', 'Landing Page Design & Optimization', 'Other'],
+    default: 'Other',  // Default value
+  },
+
 }, {
   timestamps: true
 });

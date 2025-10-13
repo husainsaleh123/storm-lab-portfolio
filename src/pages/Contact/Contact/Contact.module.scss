@@ -1,0 +1,141 @@
+/* Main layout */
+.wrapper {
+  min-height: 70vh;
+  display: grid;
+  place-items: start center;
+  padding: 24px 16px;
+  background: #f0f3fa;
+}
+
+.heading {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 30px;
+  margin: 60px 0 50px;
+  color: #111;
+  text-align: center;
+}
+
+/* Card container */
+.card {
+  width: 100%;
+  max-width: 50%;
+  background: rgba(13, 83, 211, 0.1);
+  border-radius: 14px;
+  padding: 30px 28px 40px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  margin-bottom: 60px;
+}
+
+/* Each input group */
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 28px; /* ⬅ More spacing between labels */
+}
+
+/* Label text with icon */
+.label span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Font Awesome icons */
+.icon {
+  font-size: 16px;
+  color: #0d53d3;
+}
+
+/* Inputs, selects, and textareas */
+.label > input,
+.label > select,
+.label > textarea {
+  width: 100%;
+  border: 0;
+  outline: none;
+  border-radius: 8px;
+  padding: 14px 20px;
+  background: #ffffff;
+  box-shadow: inset 0 0 0 2px rgba(13, 83, 211, 0.15);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+}
+
+.label > select {
+  cursor: pointer;
+}
+
+.label > textarea {
+  resize: vertical;
+}
+
+/* Button styling */
+.submit {
+  width: 100%;
+  border: 0;
+  cursor: pointer;
+  margin-top: 12px;
+  background: linear-gradient(180deg, #1b74ff, #0d53d3);
+  color: #fff;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  padding: 12px 16px;
+  border-radius: 8px;
+  transition: transform 0.05s ease, filter 0.2s ease;
+}
+
+.submit:disabled {
+  filter: grayscale(0.4);
+  cursor: progress;
+}
+
+.submit:active {
+  transform: translateY(1px);
+}
+
+/* Alert messages */
+.alert {
+  margin-top: 16px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+}
+
+.ok {
+  font-weight: 700;
+  color: #11652e;
+}
+
+.err {
+  font-weight: 700;
+  color: #8a1f1f;
+}
+
+.errMsg {
+  font-weight: 700;
+  color: #8a1f1f;
+}
+
+/* Hidden honeypot field */
+.honeypot {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .card {
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 600px) {
+  .card {
+    max-width: 94vw;
+  }
+}

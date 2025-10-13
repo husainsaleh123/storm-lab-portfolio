@@ -2,45 +2,41 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import cors from 'cors';
-import reviewRoutes from './routes/api/review.js';
+// import reviewRoutes from './routes/api/review.js';
 import contactRoutes from './routes/api/contact.js';
-
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 
 // Middleware
 const app = express();
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json());  // Middleware to parse incoming JSON requests
 app.use((req, res, next) => {
-    res.locals.data = {}
-    next()
-})
+    res.locals.data = {};  // Initialize the locals object to store data
+    next();
+});
 
-// API Routes - these must come before the static file serving
-app.use('/api/review', reviewRoutes);
-app.use('/api/contact', contactRoutes);
+// API Routes - These must come before static file serving
+// app.use('/api/review', reviewRoutes);
+app.use('/api/contacts', contactRoutes);  // API route for contacts
 
-// Determine which directory to serve static files from
+// Serve static files for React app
 const staticDir = process.env.NODE_ENV === 'production' ? 'dist' : 'public';
 const indexPath = process.env.NODE_ENV === 'production' ? 'dist/index.html' : 'index.html';
 
-// Serve static files
-app.use(express.static(path.join(__dirname, 'public')));
+// Serve static files (images, JS, CSS, etc.)
+app.use(express.static(path.join(__dirname, staticDir)));
 
+// Catch-all route for React (to handle non-API routes)
+app.get('/show-contact', (req, res) => {
+    res.sendFile(path.resolve(path.join(__dirname, indexPath)));  // Serve React app for '/show-contact'
+});
 
-// For React Router - serve index.html for all non-API routes
-app.get((req, res) => {
-    // Don't serve index.html for API routes
-    if (req.path.startsWith('/api/')) {
-        return res.status(404).json({ error: 'API endpoint not found' });
-    }
-    
-    // Serve the React app for all other routes
-    res.sendFile(path.resolve(path.join(__dirname, indexPath)));
+// Default route for all non-API requests (handles React Router)
+app.get('/', (req, res) => {
+    res.sendFile(path.resolve(path.join(__dirname, indexPath)));  // Serve index.html for React app
 });
 
 export default app;

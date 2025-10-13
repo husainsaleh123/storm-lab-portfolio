@@ -1,14 +1,16 @@
+// src/pages/App/App.jsx
 import React from 'react';
 import { Routes, Route, BrowserRouter as Router, Navigate } from 'react-router-dom';
 import 'font-awesome/css/font-awesome.min.css';
 
 // Import your page components
 import Home from '../Home/Home';
-import About from '../About/About'; 
-import Contact from '../Contact/Contact'; 
-import AllProjectsPage from '../Projects/AllProjectsPage/AllProjectsPage'; 
-import ShowProjectsPage from '../Projects/ShowProjectsPage/ShowProjectsPage'; 
-import AllReviewsPage from '../Reviews/AllReviewsPage/AllReviewsPage'; 
+import About from '../About/About';
+import Contact from '../Contact/Contact/Contact';
+import ShowContactPage from '../Contact/ShowContactPage/ShowContactPage'; // Import ShowContactPage component
+import AllProjectsPage from '../Projects/AllProjectsPage/AllProjectsPage';
+import ShowProjectsPage from '../Projects/ShowProjectsPage/ShowProjectsPage';
+import AllReviewsPage from '../Reviews/AllReviewsPage/AllReviewsPage';
 import ShowReviewsPage from '../Reviews/ShowReviewsPage/ShowReviewsPage';
 
 import Footer from '../../components/Footer/Footer';
@@ -25,6 +27,9 @@ export default function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           
+          {/* Contact Show Page Route */}
+          <Route path="/show-contact" element={<ShowContactPage />} />  {/* Add the route for ShowContactPage */}
+
           {/* Projects Routes */}
           <Route path="/projects" element={<AllProjectsPage />} />
           <Route path="/projects/:id" element={<ShowProjectsPage />} />

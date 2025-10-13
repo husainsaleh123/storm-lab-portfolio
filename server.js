@@ -1,3 +1,5 @@
+//./server.js
+
 import dotenv from 'dotenv';
 
 // Loading environment variables FIRST
