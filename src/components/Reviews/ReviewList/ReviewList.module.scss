@@ -1,0 +1,87 @@
+// src/components/Reviews/ReviewList/ReviewList.module.scss
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 70vh;
+  text-align: center;
+  padding: 20px;
+}
+
+.noReviews {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  border-radius: 14px;
+  padding: 30px 28px;
+}
+
+.icon {
+  margin-bottom: 20px;
+}
+
+.largeImage {
+  margin-top: 40px;
+  width: 250px; /* Larger image size */
+  height: 250px; /* Adjust to make it more prominent */
+}
+
+.NoReviewText {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 30px; /* Larger heading */
+  margin: 20px 0;
+  color: #111;
+}
+
+.addReview {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  font-size: 20px; /* Slightly bigger */
+  margin: 0px auto 40px;
+  color: #777;
+}
+
+.addReviewBtn {
+  padding: 12px 20px;
+  background: linear-gradient(180deg, #1b74ff, #0d53d3);
+  color: #fff;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  margin-top: 10px; /* Added more spacing between h3 and button */
+  &:hover {
+    background: linear-gradient(180deg, #093991, #1b74ff);
+  }
+  margin-bottom: 50px;
+}
+
+.reviews {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.review {
+  background: rgba(13, 83, 211, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 8px 10px rgba(0, 0, 0, 0.05);
+}
+
+.review h3 {
+  font-size: 20px;
+  color: #0d53d3;
+}
+
+.review p {
+  color: #555;
+}

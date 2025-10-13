@@ -10,14 +10,6 @@ const reviewSchema = new mongoose.Schema({
   // Email of the user, default to 'Anonymous user' if not provided
   email: { type: String, required: false, default: 'Anonymous user' },
 
-  // Category for the review (e.g., "service", "product", etc.)
-  category: { 
-    type: String, 
-    required: true, 
-    enum: ['Web Development','UI/UX Design','Content Creation'], // Predefined categories
-    message: '{VALUE} is not a valid category'  // Custom error message
-  },
-
   // Rating out of 5
   rating: { 
     type: Number, 
