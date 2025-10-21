@@ -45,11 +45,17 @@ main {
 }
 
 .contactButton {
-  background-color: none;
+  background-color: #F0F0F0;
   border: 3px solid #0d53d3;
   font-weight: 700;
   color: #0d53d3;
   border-radius: 10px;
+  &:hover {
+    border: 3px solid #002ac0;
+    color: #002ac0;
+    background: transparent;
+    scale: 1.03;
+  }
 }
 
 .viewButton {
@@ -57,12 +63,13 @@ main {
   background-color: #0d53d3;
   color: white;
   border-radius: 10px;
+  &:hover {
+    color: #F0F0F0;
+    background: linear-gradient(180deg, #093991, #1b74ff);
+    scale: 1.03;
+  }
 }
 
-.contactButton:hover,
-.viewButton:hover {
-  opacity: 0.8;
-}
 
 .right {
   margin-right: 30px;

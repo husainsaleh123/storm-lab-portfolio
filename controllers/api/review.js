@@ -29,14 +29,18 @@ const dataController = {
 
     //Purpose: Create new review in database Process: Create from request body → Store in locals → Continue Response: Newly created reviews
     async create(req, res, next) {
-        try {
-            const review = await Review.create(req.body);
-            res.locals.data.review = review;
-            next();
-        } catch (error) {
-            res.status(400).json({ error: error.message });
-        }
+    try {
+        console.log("Request body:", req.body);  // Add this line to check the data being sent
+
+        const review = await Review.create(req.body);
+        res.locals.data.review = review;
+        next();
+    } catch (error) {
+        console.error("Error creating review:", error);  // Log the error to get more details
+        res.status(400).json({ error: error.message });
+    }
     },
+
 
     //Purpose: Update existing reviews:
     async update(req, res, next) {

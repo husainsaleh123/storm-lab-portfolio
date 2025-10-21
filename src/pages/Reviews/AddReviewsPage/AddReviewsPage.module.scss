@@ -1,0 +1,36 @@
+// src/pages/Reviews/AddReviewsPage/AddReviewsPage.module.scss
+
+.addReviewPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+  background: #f4f8ff;
+}
+
+.feedback {
+  margin-top: 60px;
+  font-size: 36px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  margin-bottom: 0px;
+  text-align: center; /* Centered the text */
+}
+
+.experience {
+  margin-top: 18px;
+  font-size: 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 50px;
+  text-align: center; /* Centered the text */
+}
+
+/* Adding margin to the bottom of the form to ensure space */
+.form {
+  margin-bottom: 30px;
+}
+  

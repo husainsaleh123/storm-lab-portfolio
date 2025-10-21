@@ -17,7 +17,8 @@ const reviewSchema = new mongoose.Schema({
     min: 1, 
     max: 5, 
     default: 5  // Default rating is 5, but user can provide their own
-  }
+  },
+    message: { type: String, required: false, default: 'none' },
 }, {
   // Timestamps will automatically add createdAt and updatedAt fields
   timestamps: true

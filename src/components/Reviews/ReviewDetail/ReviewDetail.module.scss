@@ -1,0 +1,79 @@
+// src/components/Reviews/ReviewDetail/ReviewDetail.module.scss
+.container h2 {
+  text-align: center;
+  margin: 80px auto 1px;
+  font-family: 'Jetbrains Mono';
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.container p {
+  text-align: center;
+  font-family: 'Jetbrains Mono';
+  font-size: 20px;
+}
+
+.card {
+  margin: 60px auto 10px;
+  background-color: rgba(13, 83, 211, 0.1);
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  line-height: 2;
+  font-family: 'Jetbrains Mono';
+}
+
+.detail {
+  margin: 30px auto 40px;
+  text-align: left;
+  padding-left: 30px; /* Adds space to the right of the content */
+}
+
+.infoRow {
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.icon {
+  margin-right: 8px;
+}
+
+.backButton {
+  margin-top: 20px;
+  background: linear-gradient(180deg, #1b74ff, #0d53d3);
+  color: white;
+  padding: 10px 20px;
+  text-align: left;
+  margin-left: 30px; /* Adds space to the right of the content */
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+  font-family: 'Jetbrains Mono';
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  &:hover {
+    background: linear-gradient(180deg, #093991, #1b74ff);
+    scale: 1.02;
+  }
+}
+
+
+.reviewRating {
+  font-size: 21px;
+  color: orange;
+}
+
+.backButton {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.addReviewBtn {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+}

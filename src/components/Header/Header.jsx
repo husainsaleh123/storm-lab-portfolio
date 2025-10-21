@@ -8,19 +8,12 @@ const Header = () => {
 
   // Determine the active page based on the current route
   const getActivePage = () => {
-    switch (location.pathname) {
-      case '/about':
-        return 'about';
-      case '/projects':
-        return 'projects';
-      case '/reviews':
-        return 'reviews';
-      case '/contact':
-      case '/show-contact': // Add '/show-contact' to also highlight the Contact page
-        return 'contact';
-      default:
-        return 'home';
-    }
+    if (location.pathname === '/about') return 'about';
+    if (location.pathname === '/projects') return 'projects';
+    if (location.pathname === '/contact' || location.pathname === '/show-contact') return 'contact';
+    if (location.pathname === '/add-review') return 'reviews';
+    if (location.pathname.startsWith('/reviews')) return 'reviews'; // Check for both /reviews and /reviews/:id
+    return 'home'; // Default to home if no other match
   };
 
   const [activePage, setActivePage] = useState(getActivePage()); // Set active page based on the route

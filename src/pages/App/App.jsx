@@ -12,6 +12,8 @@ import AllProjectsPage from '../Projects/AllProjectsPage/AllProjectsPage';
 import ShowProjectsPage from '../Projects/ShowProjectsPage/ShowProjectsPage';
 import AllReviewsPage from '../Reviews/AllReviewsPage/AllReviewsPage';
 import ShowReviewsPage from '../Reviews/ShowReviewsPage/ShowReviewsPage';
+import AddReviewsPage from '../Reviews/AddReviewsPage/AddReviewsPage';
+import EditReviewsPage from '../Reviews/EditReviewsPage/EditReviewsPage'; // Import EditReviewsPage
 
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
@@ -37,6 +39,9 @@ export default function App() {
           {/* Reviews Routes */}
           <Route path="/reviews" element={<AllReviewsPage />} />
           <Route path="/reviews/:id" element={<ShowReviewsPage />} />
+          <Route path="/reviews/:id/edit" element={<EditReviewsPage />} /> {/* Route for editing a review */}
+          <Route path="/add-review" element={<AddReviewsPage />} /> {/* Add add-review route */}
+          <Route path="/show-review" element={<ShowReviewsPage />} /> {/* Add show-review route */}
           
           {/* Redirect to Home if no path matches */}
           <Route path="/*" element={<Navigate to="/" />} />

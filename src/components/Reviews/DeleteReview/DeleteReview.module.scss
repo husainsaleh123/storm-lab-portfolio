@@ -1,0 +1,82 @@
+// src/components/Review/DeleteReview/DeleteReview.module.scss
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 50%;
+  text-align: center;
+  position: relative; /* For positioning the close button */
+}
+
+.confirmMsg{
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+
+/* Close button (X) at the top right */
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  background: linear-gradient(180deg, #ff1b1b, #cc0000);
+  &:hover {
+    background: linear-gradient(180deg, #ff0000, #ff1b1b);
+    scale: 1.03;
+    color: #fff;
+  }
+  border-radius: 5px;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+/* Container for the buttons */
+.modalButtons {
+  display: flex;
+  justify-content: center; /* Align buttons next to each other */
+  margin-top: 20px; /* Reduced margin */
+  gap: 10px; /* Space between buttons */
+}
+
+.cancelButton, .confirmButton {
+  padding: 10px 20px;
+  font-weight: 700;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: 'Jetbrains Mono';
+}
+
+.confirmButton {
+  background: linear-gradient(180deg, #ff1b1b, #cc0000);
+  &:hover {
+    background: linear-gradient(180deg, #ff0000, #ff1b1b);
+    scale: 1.03;
+    color: #fff;
+  }
+  color: white;
+}
+
+.cancelButton {
+  &:hover {
+    scale: 1.03;
+  }
+  color: #ff1b1b;
+  border: 2px solid #ff1b1b;
+}

@@ -1,5 +1,6 @@
 // src/pages/Home/Home.jsx
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom'; // Import useLocation for current route
 import styles from '../Home/Home.module.scss'
 
 const Home = () => {
@@ -10,7 +11,11 @@ const Home = () => {
           <p className={styles.welcome}>Welcome to Storm Lab!</p>
           <h3 className={styles.deliver}>We deliver solutions through code.</h3>
            <div className={styles.buttons}>
-            <button className={styles.contactButton}>Contact me</button>
+           
+            <Link to="/contact">
+             <button className={styles.contactButton}>Contact me</button>
+             </Link>
+
             <button className={styles.viewButton}>View Projects</button>
           </div>
         </div>
