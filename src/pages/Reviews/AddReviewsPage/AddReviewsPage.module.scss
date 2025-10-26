@@ -33,4 +33,83 @@
 .form {
   margin-bottom: 30px;
 }
-  
+
+/* General container for the login prompt */
+.loginPrompt {
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; // Full screen height
+  background-color: #f0f8ff; // Light background color to match design
+}
+
+/* Laptop image style */
+.loginImage {
+  width: 350px; // Set width for the laptop image
+  margin-bottom: 40px; // Space below the image
+}
+
+/* Heading style for the prompt message */
+.loginPrompt h1 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin: 10px 0;
+}
+
+/* Subheading text below the main heading */
+.loginPrompt p {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+/* Button Styles */
+.btnSignUp,
+.btnLogin,
+.btnBack {
+  padding: 12px 25px;
+  background: linear-gradient(180deg, #1b74ff, #0d53d3);
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px;
+  transition: 0.3s ease;
+  display: inline-block; /* Ensure they stay in one line */
+  font-family: 'JetBrains Mono', monospace;  /* Set font to JetBrains Mono */
+  width: 150px; /* Ensuring the same width for all buttons */
+  &:hover{
+    background: linear-gradient(180deg, #0d53d3, #1b74ff);
+    transform: scale(1.05); // Make button grow slightly on hover
+  }
+}
+
+
+/* Back button style - neutral color */
+.btnBack {
+  background: none;
+  border: 3px solid #0d53d3;
+  color: #0d53d3;
+  font-weight: 600;
+}
+
+.btnBack:hover {
+  background: none;
+  transform: scale(1.05);
+}
+
+/* Wrapper for the buttons to ensure they are displayed in a row */
+.buttonWrapper {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center; /* Align buttons in the center */
+  gap: 10px; /* Space between the buttons */
+}

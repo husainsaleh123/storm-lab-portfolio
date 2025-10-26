@@ -1,0 +1,168 @@
+/* General page styles */
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(180deg, #1b74ff, #0d53d3);
+  margin: 0; /* Remove margin */
+}
+
+/* Left section - logo */
+.authLeft {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.logo {
+  max-width: 50px; /* Make the logo smaller */
+}
+
+/* Right section - authentication card */
+.authRight {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 30%; /* Form background 60% of screen width */
+  min-width: 350px; /* Ensure form is not too small */
+}
+
+/* Card styling */
+.card {
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Tabs for login and signup */
+.tabs {
+  display: flex;
+  justify-content: space-between;
+  width: 100%; /* Ensure it spans the full width */
+  gap: 10px; /* Adjusted gap to reduce space between tabs */
+  margin-bottom: 40px; /* Adjusted margin */
+}
+
+.tab {
+  font-family: 'JetBrains Mono', monospace; /* Ensure JetBrains Mono is applied */
+  padding: 12px 24px;
+  font-size: 18px;
+  cursor: pointer;
+  background: #f0f8ff;
+  color: #1b74ff;
+  font-weight: 700;
+  border: 2px solid #d0d0d0;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  flex: 1; /* Allow tabs to expand and fill the available space */
+  text-align: center; /* Align text within the tabs */
+}
+
+.tab.active {
+  background: linear-gradient(180deg, #1b74ff, #0d53d3);
+  color: white;
+  border: 2px solid #1b74ff;
+}
+
+/* Form wrapper */
+.formWrap {
+  margin-bottom: 15px; /* Reduced margin */
+  text-align: left; /* Align form labels and inputs to the left */
+}
+
+/* Form inputs */
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px; /* Reduced margin */
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="text"]:focus {
+  border-color: #1b74ff;
+  outline: none;
+}
+
+/* Submit button */
+.submitButton {
+  padding: 12px 25px;
+  margin-top: 10px;
+  margin-bottom: 15px; /* Added margin bottom for spacing */
+  background: linear-gradient(180deg, #1b74ff, #0d53d3);
+  font-weight: 600;
+  color: white;
+  font-size: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  transition: 0.3s ease;
+}
+
+.submitButton:hover {
+  transform: scale(1.05);
+}
+
+/* Switch between login and sign-up */
+.switchLine {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 5px; /* Reduced margin */
+}
+
+.switchBtn {
+  color: #4b6ee1;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.switchBtn:hover {
+  color: #1b74ff;
+}
+
+/* Center form elements */
+.formWrap label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+  text-align: left;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .authLeft,
+  .authRight {
+    flex: none;
+    width: 100%;
+    padding: 15px;
+  }
+
+  .card {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .tabs {
+    flex-direction: column;
+  }
+
+  .tab {
+    margin-bottom: 10px;
+  }
+}

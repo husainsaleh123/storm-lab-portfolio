@@ -1,0 +1,78 @@
+// src/components/User/LoginForm/LoginForm.module.scss
+
+/* Form styling */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+}
+
+/* Label styling */
+.label {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: left;
+  width: 100%;
+}
+
+/* Input field styling */
+.input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease;
+}
+
+/* Focus effect for inputs */
+.input:focus {
+  border-color: #1b74ff;
+  outline: none;
+}
+
+/* Submit button styling */
+.submitBtn {
+  padding: 12px 25px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  background: linear-gradient(180deg, #1b74ff, #0d53d3);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  transition: 0.3s ease;
+}
+
+/* Hover effect for submit button */
+.submitBtn:hover {
+background: linear-gradient(180deg, #0d53d3, #1b74ff);
+  transform: scale(1.03);
+}
+
+
+/* Error message styling */
+.errorMessage {
+  text-align: center;
+  font-weight: 800;
+  font-family: 'Jetbrains Mono';
+  color: red;
+  font-size: 13px;
+  transition: margin-top 0.3s ease, margin-bottom 0.3s ease; /* Smooth transition for margin */
+}
+
+.errorMessage.hidden {
+  margin-top: 0; /* Remove margin when not visible */
+  margin-bottom: 0; /* Remove bottom margin when not visible */
+}
+
+.errorMessage.visible {
+  margin-top: 10px; /* Margin when visible */
+  margin-bottom: 40px; /* Add more bottom margin when visible */
+}

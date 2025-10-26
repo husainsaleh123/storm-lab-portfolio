@@ -1,0 +1,91 @@
+// src/components/User/SignupForm/SignupForm.module.scss
+
+/* Form styling */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+}
+
+/* Label styling */
+.label {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: left;
+  width: 100%;
+}
+
+/* Input fields styling */
+.input {
+  width: 100%;
+  gap: 5px;
+  padding: 10px;
+  margin-bottom: 10px; /* Reduced margin-bottom */
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease;
+}
+
+.input:focus {
+  border-color: #1b74ff;
+  outline: none;
+}
+
+/* Submit button styling */
+.submitBtn {
+  padding: 12px 25px;
+  margin-top: 10px;
+  margin-bottom: 10px; /* Reduced margin-bottom */
+  background: linear-gradient(180deg, #1b74ff, #0d53d3);
+  font-weight: 600;
+  color: white;
+  font-size: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  transition: 0.3s ease;
+}
+
+.submitBtn:hover {
+  transform: scale(1.05);
+}
+
+/* Helper text for password mismatch */
+.helper {
+  font-size: 14px;
+  color: #ff0000;
+  margin-top: 2px; /* Reduced margin-top */
+  margin-bottom: 10px; /* Reduced margin-bottom */
+  font-family: 'Jetbrains Mono';
+  font-weight: 600;
+}
+
+/* Error message styling */
+.errorMessage {
+  color: red;
+  font-size: 14px;
+  margin-top: 0; /* Remove top margin */
+  margin-bottom: 0; /* Remove bottom margin */
+  transition: margin-top 0.3s ease, margin-bottom 0.3s ease; /* Smooth transition */
+  text-align: center; /* Center the error message */
+  font-family: 'JetBrains Mono', monospace; /* Correct font */
+  font-weight: 600; /* Correct font weight */
+}
+
+.errorMessage.visible {
+  margin-top: 10px; /* Add margin-top when visible */
+  margin-bottom: 30px; /* Add margin-bottom when visible */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .formContainer {
+    width: 100%;
+    padding: 15px;
+  }
+}
