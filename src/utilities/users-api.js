@@ -2,11 +2,11 @@
 
 import sendRequest from './send-request';
 
-const BASE_URL = '/api/users';
+const BASE_URL = '/api/users'; // Base URL for user-related API requests
 
 // Sign up a new user
 export function signUp(userData) {
-  return sendRequest(BASE_URL, 'POST', userData);
+  return sendRequest(`${BASE_URL}/signup`, 'POST', userData);
 }
 
 // Login an existing user
@@ -22,8 +22,7 @@ export function createReview(reviewData, token) {
   });
 }
 
-// Other API calls (if needed for different actions)
-// Example: you might add a function like this for fetching the current user's reviews
+// Get all reviews
 export function getReviews(token) {
   return sendRequest('/api/reviews', 'GET', null, {
     'Authorization': `Bearer ${token}`, // Include token for authorized requests

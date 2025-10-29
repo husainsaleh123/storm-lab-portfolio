@@ -1,4 +1,6 @@
-import React from 'react';
+// pages/App/App.jsx
+
+import React, { useState } from 'react';
 import { Routes, Route, BrowserRouter as Router, Navigate } from 'react-router-dom';
 import 'font-awesome/css/font-awesome.min.css';
 
@@ -6,7 +8,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import Home from '../Home/Home';
 import About from '../About/About';
 import Contact from '../Contact/Contact/Contact';
-import ShowContactPage from '../Contact/ShowContactPage/ShowContactPage'; // Import ShowContactPage component
+import ShowContactPage from '../Contact/ShowContactPage/ShowContactPage';
 import AllProjectsPage from '../Projects/AllProjectsPage/AllProjectsPage';
 import ShowProjectsPage from '../Projects/ShowProjectsPage/ShowProjectsPage';
 import AllReviewsPage from '../Reviews/AllReviewsPage/AllReviewsPage';
@@ -18,6 +20,8 @@ import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 
 export default function App() {
+  const [user, setUser] = useState(null); // State for user
+
   return (
     <Router>
       <main>
@@ -29,9 +33,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          
-          {/* Contact Show Page Route */}
-          <Route path="/show-contact" element={<ShowContactPage />} />  {/* Add the route for ShowContactPage */}
+          <Route path="/show-contact" element={<ShowContactPage />} />
 
           {/* Projects Routes */}
           <Route path="/projects" element={<AllProjectsPage />} />
@@ -40,7 +42,10 @@ export default function App() {
           {/* Reviews Routes */}
           <Route path="/reviews" element={<AllReviewsPage />} />
           <Route path="/reviews/:id" element={<ShowReviewsPage />} />
-          <Route path="/auth" element={<AuthPage />} /> {/* AuthPage will not show the header */}
+
+          {/* Pass setUser to AuthPage */}
+          <Route path="/auth" element={<AuthPage setUser={setUser} />} />
+
           <Route path="/reviews/:id/edit" element={<EditReviewsPage />} />
           <Route path="/add-review" element={<AddReviewsPage />} />
           <Route path="/show-review" element={<ShowReviewsPage />} />

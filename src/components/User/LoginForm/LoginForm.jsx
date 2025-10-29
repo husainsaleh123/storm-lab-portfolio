@@ -1,42 +1,49 @@
 // src/components/User/LoginForm/LoginForm.jsx
 
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as usersService from '../../../utilities/users-service';
 import styles from "./LoginForm.module.scss";
 
 export default function LoginForm({ setUser }) {
   const [credentials, setCredentials] = useState({
-    email: '',
-    password: ''
+    name: '',
+    password: '',
   });
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   function handleChange(evt) {
     setCredentials({ ...credentials, [evt.target.name]: evt.target.value });
-    setError('');  // Reset the error when user starts typing
+    setError('');
   }
 
-  async function handleSubmit(evt) {
-    evt.preventDefault();
-    try {
-      // Attempt to log the user in
-      const user = await usersService.login(credentials);
-      setUser(user);  // Set the logged-in user
-    } catch {
-      setError('Log In Failed, Please Try Again');  // Set error if login fails
+async function handleSubmit(evt) {
+  evt.preventDefault();
+  console.log('Submitting credentials:', credentials);  // Log credentials to check their values
+  try {
+    const response = await usersService.login(credentials);  // Call login service
+    if (response.success) {
+      setUser(response.user);  // Set the logged-in user
+      navigate('/reviews');  // Redirect to the /reviews page after successful login
+    } else {
+      setError(response.message);  // Display specific error message from backend
     }
+  } catch (error) {
+    setError('Log In Failed, Please Try Again');  // Set generic error if login fails
   }
+}
 
   return (
     <div className={styles.wrap}>
       <div className={styles.formContainer}>
         <form autoComplete="off" onSubmit={handleSubmit} className={styles.form}>
-          <label className={styles.label}>Email</label>
+          <label className={styles.label}>Name</label>
           <input
             className={styles.input}
-            type="email"
-            name="email"
-            value={credentials.email}
+            type="text"
+            name="name"
+            value={credentials.name}
             onChange={handleChange}
             required
           />
