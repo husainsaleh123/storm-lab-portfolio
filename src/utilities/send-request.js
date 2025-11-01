@@ -18,17 +18,9 @@ export default async function sendRequest(url, method = 'GET', payload = null) {
     options.headers.Authorization = `Bearer ${token}`;  // Include token in Authorization header
   }
 
-  try {
     // Send the request to the backend
     const res = await fetch(url, options);
 
-    if (res.ok) {
-      return res.json();  // Parse and return the response JSON
-    }
-
+    if (res.ok) return res.json();  // Parse and return the response JSON
     throw new Error(`Error ${res.status}: ${res.statusText}`);  // If request failed, throw an error
-  } catch (error) {
-    console.error('API request failed', error);
-    throw error;  // Propagate the error to be handled in the calling function
-  }
 }

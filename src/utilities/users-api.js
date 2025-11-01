@@ -6,7 +6,7 @@ const BASE_URL = '/api/users'; // Base URL for user-related API requests
 
 // Sign up a new user
 export function signUp(userData) {
-  return sendRequest(`${BASE_URL}/signup`, 'POST', userData);
+  return sendRequest(BASE_URL, 'POST', userData);
 }
 
 // Login an existing user

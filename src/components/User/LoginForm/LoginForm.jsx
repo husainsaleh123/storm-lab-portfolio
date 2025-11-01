@@ -1,9 +1,9 @@
 // src/components/User/LoginForm/LoginForm.jsx
 
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import * as usersService from '../../../utilities/users-service';
 import styles from "./LoginForm.module.scss";
+import { Navigate } from 'react-router-dom';  // Import Navigate component
 
 export default function LoginForm({ setUser }) {
   const [credentials, setCredentials] = useState({
@@ -11,28 +11,28 @@ export default function LoginForm({ setUser }) {
     password: '',
   });
   const [error, setError] = useState('');
-  const navigate = useNavigate();
+  const [redirectToReviews, setRedirectToReviews] = useState(false);  // State to trigger redirection
 
   function handleChange(evt) {
     setCredentials({ ...credentials, [evt.target.name]: evt.target.value });
     setError('');
   }
 
-async function handleSubmit(evt) {
-  evt.preventDefault();
-  console.log('Submitting credentials:', credentials);  // Log credentials to check their values
-  try {
-    const response = await usersService.login(credentials);  // Call login service
-    if (response.success) {
-      setUser(response.user);  // Set the logged-in user
-      navigate('/reviews');  // Redirect to the /reviews page after successful login
-    } else {
-      setError(response.message);  // Display specific error message from backend
+  async function handleSubmit(evt) {
+    evt.preventDefault();
+    try {
+      const user = await usersService.login(credentials);  // Call login service
+      setUser(user);  // Set the logged-in user
+      setRedirectToReviews(true);  // Trigger redirection after successful login
+    } catch {
+      setError('Log In Failed, Please Try Again');  // Set generic error if login fails
     }
-  } catch (error) {
-    setError('Log In Failed, Please Try Again');  // Set generic error if login fails
   }
-}
+
+  // Redirect to /reviews page after successful login
+  if (redirectToReviews) {
+    return <Navigate to="/reviews" />;  // Redirect the user to /reviews page
+  }
 
   return (
     <div className={styles.wrap}>

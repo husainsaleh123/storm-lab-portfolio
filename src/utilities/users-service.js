@@ -1,60 +1,23 @@
 // src/utilities/users-service.js
 
-import sendRequest from './send-request';
+import * as usersAPI from './users-api';
 
 // Sign up a new user
 export async function signUp(userData) {
-  try {
-    const response = await sendRequest('/api/users/signup', 'POST', userData);
+    const response = await usersAPI.signUp(userData);
 
-    if (response.token && response.user) {
-      localStorage.setItem('token', response.token);
-      return {
-        success: true,
-        message: 'User created successfully!',
-        user: response.user,
-        token: response.token,
-      };
-    } else {
-      return { success: false, message: 'Failed to sign up: Invalid response from server' };
-    }
-  } catch (error) {
-    console.error('Sign Up Failed', error);
-    return { success: false, message: 'Sign Up Failed - Try Again' };
-  }
+    localStorage.setItem('token', response.token)
+
+    return response.user;
 }
 
 // Login an existing user
 export async function login(credentials) {
-  try {
-    const response = await sendRequest('/api/users/login', 'POST', credentials);
+    const response = await usersAPI.login(credentials);
 
-    if (response.token && response.user) {
-      localStorage.setItem('token', response.token);
-      return {
-        success: true,
-        message: 'Login successful!',
-        user: response.user,
-        token: response.token,
-      };
-    } else {
-      return { success: false, message: 'Invalid response from server' };
-    }
-  } catch (error) {
-    console.error('Login Failed', error);
-
-    if (error.response) {
-      return {
-        success: false,
-        message: error.response.data.error || 'An error occurred during login',
-      };
-    } else {
-      return {
-        success: false,
-        message: 'Log In Failed, Please Try Again',
-      };
-    }
-  }
+    localStorage.setItem('token', response.token);
+    
+    return response.user;
 }
 
 // Check if user is authenticated
@@ -79,4 +42,22 @@ export function getToken() {
     localStorage.removeItem('token');
     return null;
   }
+}
+
+export function getUser() {
+  const token = getToken();
+  if (!token) return null;
+  
+  try {
+    return JSON.parse(atob(token.split('.')[1])).user;
+  } catch (error) {
+    // Token is malformed, remove it
+    console.log('Invalid token format, removing from localStorage');
+    localStorage.removeItem('token');
+    return null;
+  }
+}
+
+export function logOut() {
+  localStorage.removeItem('token');
 }

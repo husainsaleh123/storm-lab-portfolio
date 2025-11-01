@@ -3,62 +3,58 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 import styles from './AddReviewsPage.module.scss'; // Import SCSS for styling
+import ReviewForm from '../../../components/Reviews/ReviewForm/ReviewForm'; // Import the ReviewForm component
 
 const AddReviewsPage = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Track user authentication
+  const [userDetails, setUserDetails] = useState({ name: '', email: '' }); // State for user's details
+  const [reviewData, setReviewData] = useState({
+    name: '',
+    email: '',
+    rating: '',
+    message: '',
+  });
+
   const navigate = useNavigate(); // Initialize useNavigate hook to navigate to another page
 
   useEffect(() => {
-    const token = localStorage.getItem('jwtToken'); // Check if token exists in localStorage
+    const token = localStorage.getItem('jwtToken'); // Check if the token exists in localStorage
 
     if (token) {
-      setIsAuthenticated(true); // User is logged in
+      const user = JSON.parse(localStorage.getItem('user')); // Get user details from localStorage
+      if (user) {
+        setUserDetails({ name: user.name, email: user.email });
+        setReviewData({ ...reviewData, name: user.name, email: user.email });
+      }
     } else {
-      setIsAuthenticated(false); // User is not logged in
+      // If no token is found, redirect to login page
+      navigate('/auth');
     }
-  }, []);
+  }, [navigate]);
 
-  // Redirect to login/signup page if user is not authenticated
-  if (!isAuthenticated) {
-    return (
-      <div className={styles.loginPrompt}>
-        <img
-          src="../src/assets/images/auth.png"
-          alt="Login Prompt"
-          className={styles.loginImage} // Image class for styling
-        />
-        <h1>Only authenticated users can leave reviews.</h1>
-        <p>Please Sign up and Login to leave your review.</p>
+  // Handle input changes
+  const handleInputChange = (e) => {
+    setReviewData({
+      ...reviewData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-        {/* Wrapping buttons inside a div to align them in a row */}
-        <div className={styles.buttonWrapper}>
-          <button
-            onClick={() => navigate('/auth')}
-            className={styles.btnSignUp}
-          >
-            Sign Up
-          </button>
-          <button
-            onClick={() => navigate('/auth')}
-            className={styles.btnLogin}
-          >
-            Login
-          </button>
-          <button
-            onClick={() => navigate(-1)} // Go back to the previous page
-            className={styles.btnBack}
-          >
-            &#8592; Back
-          </button>
-        </div>
-      </div>
-    );
-  }
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Submit review data to the backend or process it as needed
+    console.log('Review submitted:', reviewData);
+  };
 
   return (
     <div>
-      {/* Your review form goes here if authenticated */}
-      <h2>Add Your Review</h2>
+      <h2 className={styles.FeedbackWlcmMsg}>Welcome, {userDetails.name}. We improving through feedback. </h2>
+      <p className={styles.XpShareMsg}>Please share your experience with us.</p>
+      <ReviewForm
+        reviewData={{ ...reviewData, name: userDetails.name, email: userDetails.email }} // Pre-fill form with user details
+        handleInputChange={handleInputChange}
+        handleSubmit={handleSubmit}
+      />
     </div>
   );
 };

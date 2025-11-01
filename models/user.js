@@ -2,27 +2,40 @@
 
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
+const Schema = mongoose.Schema;
 
-const userSchema = new mongoose.Schema({
+const SALT_ROUNDS = 6;
+
+const userSchema = new Schema({
   name: { type: String, required: true, unique: true, trim: true, minlength: 3 },
-  email: { type: String, required: true, unique: true, lowercase: true, match: [/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, 'Please enter a valid email address.'] },
-  password: { type: String, required: true }
-}, { timestamps: true });
-
-// Password comparison method
-userSchema.methods.comparePassword = async function(password) {
-  return bcrypt.compare(password, this.password);  // Compare the entered password with the stored hashed password
-};
+  email: { 
+    type: String, 
+    required: true, 
+    unique: true,
+     lowercase: true, 
+     match: [/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, 'Please enter a valid email address.'] 
+    },
+  password: { 
+    type: String,
+    trim: true, 
+    required: true 
+  },
+  reviews:[{type: Schema.Types.ObjectId, ref:"Reviews"}],
+  }, { 
+    timestamps: true,
+    toJSON: {
+          transform: function (doc, ret) {
+              delete ret.password;
+              return ret;
+          }
+      } 
+  });
 
 // Hash password before saving to the database
 userSchema.pre('save', async function(next) {
   if (!this.isModified('password')) return next();  // Only hash the password if it's modified
-  try {
-    this.password = await bcrypt.hash(this.password, 10);  // Hash the password
-    next();  // Continue with the save operation
-  } catch (error) {
-    next(error);  // Pass any errors to the next error handler
-  }
+    this.password = await bcrypt.hash(this.password, SALT_ROUNDS);  // Hash the password
+    return next();  // Continue with the save operation
 });
 
 export default mongoose.model('User', userSchema);

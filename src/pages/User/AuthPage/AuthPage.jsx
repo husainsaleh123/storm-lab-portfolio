@@ -22,6 +22,7 @@ export default function AuthPage({ setUser }) {
               type="button"
               className={`${styles.tab} ${showLogin ? styles.active : ""}`}
               onClick={() => setShowLogin(true)}
+              aria-pressed={showLogin}
             >
               Log in
             </button>
@@ -29,6 +30,7 @@ export default function AuthPage({ setUser }) {
               type="button"
               className={`${styles.tab} ${!showLogin ? styles.active : ""}`}
               onClick={() => setShowLogin(false)}
+              aria-pressed={!showLogin}
             >
               Sign up
             </button>
