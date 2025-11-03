@@ -1,119 +1,96 @@
+// controllers/api/review.js
 import Review from '../../models/review.js';
 
+//data controller
+
 const dataController = {
-    // Purpose: Retrieve all reviews
+    //Purpose: Retrieve single review by ID Process: Find by ID → Check existence → Store in locals → Continue Response: Single review object
     async index(req, res, next) {
         try {
             const reviews = await Review.find({});
             res.locals.data.reviews = reviews;
-            next();  // Pass to the API controller for the response
+            next();
         } catch (error) {
             res.status(400).json({ error: error.message });
         }
     },
 
-    // Purpose: Retrieve a single review by ID
+    //Purpose: Retrieve single review by ID Process: Find by ID → Check existence → Store in locals → Continue Response: Single review object
     async show(req, res, next) {
         try {
             const review = await Review.findById(req.params.id);
             if (!review) throw new Error('Review not found');
             res.locals.data.review = review;
-            next();  // Pass to the API controller for the response
+            next();
         } catch (error) {
             res.status(400).json({ error: error.message });
         }
     },
 
-    // Purpose: Create a new review in the database
+    //Purpose: Create new review in database Process: Create from request body → Store in locals → Continue Response: Newly created reviews
     async create(req, res, next) {
-        try {
-            // Ensure the user is logged in before allowing review submission
-            if (!req.user) throw new Error('You must be logged in to submit a review');
-            
-            // Create the review and associate it with the logged-in user's ID
-            const review = await Review.create({
-                ...req.body,  // Spread the request body to get the message, rating, etc.
-                userId: req.user._id  // Attach the logged-in user's ID to the review
-            });
+    try {
+        console.log("Request body:", req.body);  // Add this line to check the data being sent
 
-            // Store the newly created review in locals to pass to the next controller
-            res.locals.data.review = review;
-            next();  // Pass to the API controller for the response
-        } catch (error) {
-            console.error("Error creating review:", error);
-            res.status(400).json({ error: error.message });
-        }
+        const review = await Review.create(req.body);
+        res.locals.data.review = review;
+        next();
+    } catch (error) {
+        console.error("Error creating review:", error);  // Log the error to get more details
+        res.status(400).json({ error: error.message });
+    }
     },
 
-    // Purpose: Update an existing review by ID
+
+    //Purpose: Update existing reviews:
     async update(req, res, next) {
         try {
-            // Find the review by ID
-            const review = await Review.findById(req.params.id);
-            if (!review) throw new Error('Review not found');
-            
-            // Ensure the logged-in user is the owner of the review
-            if (review.userId.toString() !== req.user._id.toString()) {
-                throw new Error('You are not authorized to edit this review');
-            }
-
-            // Update the review with the provided data
-            const updatedReview = await Review.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
-
-            res.locals.data.review = updatedReview;  // Store the updated review in locals
-            next();  // Pass to the API controller for the response
+            const review = await Review.findByIdAndUpdate(
+                req.params.id,
+                req.body,
+                { new: true, runValidators: true }
+            );
+            if (!review) throw new Error('Item not found');
+            res.locals.data.review = review;
+            next();
         } catch (error) {
             res.status(400).json({ error: error.message });
         }
     },
 
-    // Purpose: Delete an existing review by ID
+    //Purpose: Remove review from database Process: Find and delete → Store deleted review in locals → Continue
     async delete(req, res, next) {
         try {
-            // Find the review by ID
-            const review = await Review.findById(req.params.id);
-            if (!review) throw new Error('Review not found');
-            
-            // Ensure the logged-in user is the owner of the review
-            if (review.userId.toString() !== req.user._id.toString()) {
-                throw new Error('You are not authorized to delete this review');
-            }
-
-            // Delete the review from the database
-            await Review.findByIdAndDelete(req.params.id);
-
-            res.locals.data.review = review;  // Store the deleted review in locals for response
-            next();  // Pass to the API controller for the response
+            const review = await Review.findByIdAndDelete(req.params.id);
+            if (!review) throw new Error('Item not found');
+            res.locals.data.review = review;
+            next();
         } catch (error) {
             res.status(400).json({ error: error.message });
         }
     }
 };
 
+//creating the apiController
 const apiController = {
-    // Purpose: Respond with the list of all reviews
     index(req, res) {
         res.json(res.locals.data.reviews);
     },
 
-    // Purpose: Respond with a single review
     show(req, res) {
         res.json(res.locals.data.review);
     },
 
-    // Purpose: Respond with the newly created review
     create(req, res) {
         res.status(201).json(res.locals.data.review);
     },
 
-    // Purpose: Respond with the updated review
     update(req, res) {
         res.json(res.locals.data.review);
     },
 
-    // Purpose: Respond with a message indicating successful deletion
     delete(req, res) {
-        res.json({ message: 'Review deleted successfully', review: res.locals.data.review });
+        res.json({ message: 'Review deleted successfully' });
     }
 };
 

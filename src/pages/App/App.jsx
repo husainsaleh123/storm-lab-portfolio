@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'; // useLocation for path detection
 import 'font-awesome/css/font-awesome.min.css';
-import { getUser } from '../../utilities/users-service';
+// import { getUser } from '../../utilities/users-service';
 // Import your page components
 import Home from '../Home/Home';
 import About from '../About/About';
@@ -12,7 +12,7 @@ import ShowContactPage from '../Contact/ShowContactPage/ShowContactPage';
 import AllProjectsPage from '../Projects/AllProjectsPage/AllProjectsPage';
 import ShowProjectsPage from '../Projects/ShowProjectsPage/ShowProjectsPage';
 import AllReviewsPage from '../Reviews/AllReviewsPage/AllReviewsPage';
-import AuthPage from '../User/AuthPage/AuthPage'; 
+// import AuthPage from '../User/AuthPage/AuthPage'; 
 import ShowReviewsPage from '../Reviews/ShowReviewsPage/ShowReviewsPage';
 import AddReviewsPage from '../Reviews/AddReviewsPage/AddReviewsPage';
 import EditReviewsPage from '../Reviews/EditReviewsPage/EditReviewsPage'; 
@@ -20,16 +20,16 @@ import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
 
 export default function App() {
-  const [user, setUser] = useState(getUser()); // State for user
+  // const [user, setUser] = useState(getUser()); // State for user
   const location = useLocation();  // Get current location path
 
   // Check if we're on the /auth page
-  const isAuthPage = location.pathname === '/auth'; 
+  // const isAuthPage = location.pathname === '/auth'; 
 
   return (
     <main>
       {/* Render Header and Footer only if the current page is not '/auth' */}
-      {!isAuthPage && <Header user={user} setUser={setUser} />}
+      {<Header />} 
       
       <Routes>
         {/* Define routes for the pages */}
@@ -47,7 +47,7 @@ export default function App() {
         <Route path="/reviews/:id" element={<ShowReviewsPage />} />
 
         {/* Auth Routes */}
-        <Route path="/auth" element={<AuthPage user={user} setUser={setUser} />} />
+        {/* <Route path="/auth" element={<AuthPage user={user} setUser={setUser} />} /> */}
 
         {/* Edit, Add, Show Review Pages */}
         <Route path="/reviews/:id/edit" element={<EditReviewsPage />} />
@@ -59,7 +59,7 @@ export default function App() {
       </Routes>
 
       {/* Render Footer only for pages other than AuthPage */}
-      {!isAuthPage && <Footer user={user} setUser={setUser} />}
+      {<Footer />}
     </main>
   );
 }

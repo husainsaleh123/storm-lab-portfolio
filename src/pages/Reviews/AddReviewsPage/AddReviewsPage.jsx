@@ -1,12 +1,11 @@
 // src/pages/Reviews/AddReviewsPage/AddReviewsPage.jsx
 
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
-import styles from './AddReviewsPage.module.scss'; // Import SCSS for styling
+import React, { useState } from 'react';
 import ReviewForm from '../../../components/Reviews/ReviewForm/ReviewForm'; // Import the ReviewForm component
+import styles from '../../../pages/Reviews/AddReviewsPage/AddReviewsPage.module.scss';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 
 const AddReviewsPage = () => {
-  const [userDetails, setUserDetails] = useState({ name: '', email: '' }); // State for user's details
   const [reviewData, setReviewData] = useState({
     name: '',
     email: '',
@@ -16,42 +15,44 @@ const AddReviewsPage = () => {
 
   const navigate = useNavigate(); // Initialize useNavigate hook to navigate to another page
 
-  useEffect(() => {
-    const token = localStorage.getItem('jwtToken'); // Check if the token exists in localStorage
-
-    if (token) {
-      const user = JSON.parse(localStorage.getItem('user')); // Get user details from localStorage
-      if (user) {
-        setUserDetails({ name: user.name, email: user.email });
-        setReviewData({ ...reviewData, name: user.name, email: user.email });
-      }
-    } else {
-      // If no token is found, redirect to login page
-      navigate('/auth');
-    }
-  }, [navigate]);
-
-  // Handle input changes
   const handleInputChange = (e) => {
+    const { name, value } = e.target;
     setReviewData({
       ...reviewData,
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   };
 
-  // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Submit review data to the backend or process it as needed
-    console.log('Review submitted:', reviewData);
+    console.log("Review data to submit:", reviewData);  // Check the data
+
+    try {
+      const response = await fetch('/api/reviews', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(reviewData),
+      });
+
+      if (!response.ok) throw new Error('Failed to submit review');
+
+      const data = await response.json(); // Correctly parse the response as JSON
+
+      alert('Review submitted successfully!');
+
+      // After successfully submitting the review, redirect to the ShowReviewsPage with the review ID
+      navigate(`/reviews/${data._id}`);  // Navigate to the ShowReviewsPage with the new review's ID
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   return (
-    <div>
-      <h2 className={styles.FeedbackWlcmMsg}>Welcome, {userDetails.name}. We improving through feedback. </h2>
-      <p className={styles.XpShareMsg}>Please share your experience with us.</p>
+    <div className={styles.addReviewPage}>
+      <h2 className={styles.feedback}>Constantly improving through feedback.</h2>
+      <h3 className={styles.experience}>Please share your experience with us.</h3>
       <ReviewForm
-        reviewData={{ ...reviewData, name: userDetails.name, email: userDetails.email }} // Pre-fill form with user details
+        reviewData={reviewData}
         handleInputChange={handleInputChange}
         handleSubmit={handleSubmit}
       />

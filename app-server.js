@@ -2,9 +2,9 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import cors from 'cors';
-import checkToken from './config/checkToken.js';
-import ensureLoggedIn from './config/ensureLoggedIn.js';
-import userRoutes from './routes/api/users.js';
+// import checkToken from './config/checkToken.js';
+// import ensureLoggedIn from './config/ensureLoggedIn.js';
+// import userRoutes from './routes/api/users.js';
 import reviewRoutes from './routes/api/review.js';
 import contactRoutes from './routes/api/contact.js';
 
@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 });
 
 // API Routes - These must come before static file serving
-app.use('/api/users', userRoutes);
+// app.use('/api/users', userRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/contacts', contactRoutes);  // API route for contacts
 

@@ -8,7 +8,7 @@ const ReviewForm = ({ reviewData, handleInputChange, handleSubmit }) => {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <label className={styles.label}>
-        <span>Name</span>
+        <span><FontAwesomeIcon icon={faUser} className={styles.icon} /> Name</span>
         <input
           type="text"
           name="name"
@@ -16,13 +16,12 @@ const ReviewForm = ({ reviewData, handleInputChange, handleSubmit }) => {
           onChange={handleInputChange}
           required
           placeholder="Enter your name"
-          className={styles.input} 
-          readOnly // Make the name field read-only
+          className={styles.input}  // Apply the same input style
         />
       </label>
 
       <label className={styles.label}>
-        <span>Email</span>
+        <span><FontAwesomeIcon icon={faEnvelope} className={styles.icon} /> Email</span>
         <input
           type="email"
           name="email"
@@ -30,19 +29,18 @@ const ReviewForm = ({ reviewData, handleInputChange, handleSubmit }) => {
           onChange={handleInputChange}
           required
           placeholder="Enter your email"
-          className={styles.input} 
-          readOnly // Make the email field read-only
+          className={styles.input}  // Apply the same input style
         />
       </label>
 
       <label className={styles.label}>
-        <span>Rating</span>
+        <span><FontAwesomeIcon icon={faStar} className={styles.icon} /> Rating</span>
         <select
           name="rating"
           value={reviewData.rating}
           onChange={handleInputChange}
           required
-          className={styles.input}
+          className={styles.input}  // Apply the same input style
         >
           <option value="">Select a rating</option>
           <option value="1">1</option>
@@ -54,13 +52,13 @@ const ReviewForm = ({ reviewData, handleInputChange, handleSubmit }) => {
       </label>
 
       <label className={styles.label}>
-        <span>Message</span>
+        <span><FontAwesomeIcon icon={faComment} className={styles.icon} /> Message</span>
         <textarea
           name="message"
           value={reviewData.message}
           onChange={handleInputChange}
           placeholder="Write your review here"
-          className={styles.input}
+          className={styles.input}  // Apply the same input style
         />
       </label>
 
