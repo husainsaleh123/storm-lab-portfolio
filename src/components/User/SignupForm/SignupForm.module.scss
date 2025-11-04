@@ -1,5 +1,7 @@
 // src/components/User/SignupForm/SignupForm.module.scss
 
+/* src/components/User/SignupForm/SignupForm.module.scss */
+
 /* Form styling */
 .form {
   display: flex;
@@ -82,24 +84,14 @@
   margin-bottom: 30px; /* Add margin-bottom when visible */
 }
 
-
 /* Success message styling */
 .successMessage {
+  color: rgb(0, 147, 0);
   font-size: 16px;
-  color: green;
+  margin-top: 10px;
+  display: block; // Ensure the message is displayed when state is updated
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
   font-weight: 600;
-  text-align: center;
-  margin-top: 10px;
-  transition: margin-top 0.3s ease;
-  font-family: 'Jetbrains Mono';
-}
-
-.successMessage.visible {
-  margin-top: 10px;
-}
-
-.successMessage.hidden {
-  margin-top: 0;
 }
 
 /* Responsive Design */

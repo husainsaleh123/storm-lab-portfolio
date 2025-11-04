@@ -1,7 +1,7 @@
 // src/components/User/SignupForm/SignupForm.jsx
 
 import { Component } from "react";
-import { signUp } from "../../../utilities/users-service";
+import { signUp } from "../../../utilities/users-service"; // Import signUp function
 import styles from "./SignupForm.module.scss";
 
 export default class SignUpForm extends Component {
@@ -10,46 +10,40 @@ export default class SignUpForm extends Component {
     email: "",
     password: "",
     confirm: "",
-    error: "",
-    successMessage: "",
+    error: "", // To show any errors
+    successMessage: "", // To show success message
   };
 
+  // Handle change of input fields
   handleChange = (evt) => {
     this.setState({
       [evt.target.name]: evt.target.value,
-      error: "",
-      successMessage: "",
+      error: "", // Reset error messages when user types
+      successMessage: "", // Reset success message when user types
     });
   };
 
-  handleSubmit = async (evt) => {
+  // Handle form submission
+  handleSubmit = (evt) => {
     evt.preventDefault();
-    this.setState({ error: "", successMessage: "" });
+    
+    const formData = { ...this.state };
+    delete formData.confirm;
+    delete formData.error;
 
-    try {
-      const formData = { ...this.state };
-      delete formData.confirm;
-      delete formData.error;
-      const response = await signUp(formData);
-
-      if (response.success) {
-        this.setState({
-          successMessage: response.message,
-          error: "",
-        });
-        this.props.setUser(response.user); // Set the logged-in user
-      } else {
-        this.setState({
-          error: response.message,
-          successMessage: "",
-        });
-      }
-    } catch (error) {
-      this.setState({ error: error.message, successMessage: "" });
-    }
+    // The signUp function returns a promise, so we handle the response
+    signUp(formData).then((user) => {
+      this.props.setUser(user); // Successfully signed up, set user
+      this.setState({ successMessage: 'Account created successfully! ' });
+    }).catch(() => {
+      // An error happened on the server
+      this.setState({ error: 'Sign Up Failed - Try Again' });
+    });
   };
 
+
   render() {
+    // Disable submit if passwords don't match
     const disable = this.state.password !== this.state.confirm;
     const showPasswordMismatch =
       this.state.password && this.state.confirm && disable;
@@ -102,10 +96,14 @@ export default class SignUpForm extends Component {
               Sign Up
             </button>
 
+            {/* Show mismatch password message */}
             {showPasswordMismatch && (
-              <p className={`${styles.helper} ${styles.visible}`}>Passwords must match.</p>
+              <p className={`${styles.helper} ${styles.visible}`}>
+                Passwords must match.
+              </p>
             )}
 
+            {/* Display success message if signup is successful */}
             {this.state.successMessage && (
               <p className={`${styles.successMessage} ${styles.visible}`}>
                 {this.state.successMessage}
@@ -114,7 +112,11 @@ export default class SignUpForm extends Component {
           </form>
         </div>
 
-        <p className={`${styles.errorMessage} ${this.state.error ? styles.visible : ""}`} aria-live="polite">
+        {/* Display error message if any */}
+        <p
+          className={`${styles.errorMessage} ${this.state.error ? styles.visible : ""}`}
+          aria-live="polite"
+        >
           &nbsp;{this.state.error}
         </p>
       </div>
