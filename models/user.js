@@ -20,7 +20,7 @@ const userSchema = new Schema({
     trim: true, 
     required: true 
   },
-  reviews:[{type: Schema.Types.ObjectId, ref:"Reviews"}],
+  reviews:[{type: Schema.Types.ObjectId, ref:"Review"}],
   }, { 
     timestamps: true,
     toJSON: {

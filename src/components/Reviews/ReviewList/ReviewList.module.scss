@@ -272,3 +272,25 @@ h1 {
   background-color: #ebf2ff;
   width: 150px; /* Reduced width of filter box */
 }
+
+.loginBtn{
+  padding: 6px 15px;
+  background: #f1f1f1;
+  color: #1b74ff;
+  font-family: 'JetBrains Mono', monospace;  /* Ensuring JetBrains Mono is used */
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 3px;
+  text-decoration: none;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 3px solid #1b74ff;
+  transition: 0.2s ease;
+  &:hover {
+    padding: 8px 18px;
+    border: none;
+    background: linear-gradient(180deg, #093991, #1b74ff);
+    scale: 1.03;
+    color: white;
+  }
+}

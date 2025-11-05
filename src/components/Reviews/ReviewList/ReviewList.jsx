@@ -1,15 +1,22 @@
-// src/componens/Reviews/ReviewList/ReviewList.jsx
-// src/componens/Reviews/ReviewList/ReviewList.jsx
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faEnvelope, faStar, faMessage, faFilter } from '@fortawesome/free-solid-svg-icons'; // Imported filter icon
+import { faUser, faEnvelope, faStar, faMessage, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import DeleteReview from '../DeleteReview/DeleteReview'; // Import modal component
-import styles from './ReviewList.module.scss'; // Assuming styles are already present in this file
+import DeleteReview from '../DeleteReview/DeleteReview';
+import styles from './ReviewList.module.scss';
 
-const ReviewList = ({ reviews, setReviews, averageRating, reviewCount, filter, setFilter }) => {
+const ReviewList = ({ reviews, setReviews, filter, setFilter, averageRating }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [reviewToDelete, setReviewToDelete] = useState(null);
+  const [user, setUser] = useState(null); // Track if the user is logged in
+
+  // Get the current user from localStorage
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem('user');
+    if (loggedInUser) {
+      setUser(JSON.parse(loggedInUser)); // Set user if found in localStorage
+    }
+  }, []); // Run this only once on page load
 
   // Function to display filled and empty stars
   const getStars = (rating) => {
@@ -27,7 +34,7 @@ const ReviewList = ({ reviews, setReviews, averageRating, reviewCount, filter, s
   // Re-fetch reviews from the server after deletion
   const fetchReviews = async () => {
     try {
-      const res = await fetch('/api/reviews'); // Make sure your API endpoint is correct
+      const res = await fetch('/api/reviews');
       const data = await res.json();
       setReviews(data); // Update reviews with the latest data
     } catch (error) {
@@ -37,24 +44,19 @@ const ReviewList = ({ reviews, setReviews, averageRating, reviewCount, filter, s
 
   // Confirm Deletion
   const handleConfirmDelete = async () => {
-    // Close the modal immediately when user confirms
-    setIsModalOpen(false);
+    setIsModalOpen(false); // Close the modal immediately when user confirms
 
     try {
-      // Make an API call to delete the review from the database
       const response = await fetch(`/api/reviews/${reviewToDelete}`, {
         method: 'DELETE',
       });
 
       if (response.ok) {
-        // Re-fetch reviews to get the latest data after deletion
         fetchReviews(); // Refresh the reviews list after successful deletion
       } else {
-        // Handle failure if the delete operation wasn't successful
         console.error('Failed to delete review');
       }
     } catch (error) {
-      // Handle network or other errors
       console.error('Error deleting review:', error);
     }
   };
@@ -68,13 +70,13 @@ const ReviewList = ({ reviews, setReviews, averageRating, reviewCount, filter, s
   const sortedReviews = () => {
     switch (filter) {
       case 'Highest':
-        return [...reviews].sort((a, b) => b.rating - a.rating); // Sort by highest rating
+        return [...reviews].sort((a, b) => b.rating - a.rating);
       case 'Lowest':
-        return [...reviews].sort((a, b) => a.rating - b.rating); // Sort by lowest rating
+        return [...reviews].sort((a, b) => a.rating - b.rating);
       case 'Earliest':
-        return [...reviews].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)); // Sort by earliest (assuming `createdAt` exists)
+        return [...reviews].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
       case 'Latest':
-        return [...reviews].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // Sort by latest (assuming `createdAt` exists)
+        return [...reviews].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       default:
         return reviews;
     }
@@ -83,6 +85,12 @@ const ReviewList = ({ reviews, setReviews, averageRating, reviewCount, filter, s
   // Handle filter changes
   const handleFilterChange = (e) => {
     setFilter(e.target.value);  // Set filter value
+  };
+
+  // Logout logic
+  const handleLogout = () => {
+    localStorage.removeItem('user'); // Remove user from localStorage
+    setUser(null); // Update the state
   };
 
   return (
@@ -103,9 +111,20 @@ const ReviewList = ({ reviews, setReviews, averageRating, reviewCount, filter, s
             <h1>Thank you for visiting Storm Lab’s reviews.</h1>
             <div className={styles.headerInfo}>
               <p className={styles.AllReviewPText}>
-                <strong>Our average rating is {averageRating}/5</strong> with <strong>{reviewCount} review(s)</strong>.
+                <strong>Our average rating is {averageRating}/5</strong> with <strong>{reviews.length} review(s)</strong>.
               </p>
+
+              {/* Reordered buttons to ensure Add review is on the left and Login/Logout is on the right */}
               <Link to="/add-review" className={styles.addReviewBtn}>Add review</Link>
+
+              {/* Show login/logout button based on user state */}
+              {user ? (
+                <button className={styles.logoutBtn} onClick={handleLogout}>
+                  Logout
+                </button>
+              ) : (
+                <Link to="/auth" className={styles.loginBtn}>Login</Link>
+              )}
             </div>
           </div>
 
@@ -156,7 +175,7 @@ const ReviewList = ({ reviews, setReviews, averageRating, reviewCount, filter, s
                   </button>
 
                   <button className={styles.editButton}>
-                    <Link to={`/reviews/${review._id}/edit`} className={styles.EditDetailsBtn}>Edit</Link> {/* Update the link to navigate to the edit page */}
+                    <Link to={`/reviews/${review._id}/edit`} className={styles.EditDetailsBtn}>Edit</Link>
                   </button>
 
                   <button
