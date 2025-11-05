@@ -1,9 +1,12 @@
-//models/review.js
+// models/review.js
 
-//start by importing the mongoose library
 import mongoose from 'mongoose';
 
+// Creating the review schema
 const reviewSchema = new mongoose.Schema({
+  // Reference to the User model (user's _id)
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+
   // User's name, can be anonymous if not provided
   name: { type: String, required: false, default: 'Anonymous' },
 
@@ -18,12 +21,13 @@ const reviewSchema = new mongoose.Schema({
     max: 5, 
     default: 5  // Default rating is 5, but user can provide their own
   },
-    message: { type: String, required: false, default: 'none' },
+
+  // Review message
+  message: { type: String, required: false, default: 'none' },
 }, {
   // Timestamps will automatically add createdAt and updatedAt fields
   timestamps: true
 });
-
 
 // Creating the model from the schema
 const Review = mongoose.model('Review', reviewSchema);
