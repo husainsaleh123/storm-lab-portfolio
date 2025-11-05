@@ -24,22 +24,43 @@ export default class SignUpForm extends Component {
   };
 
   // Handle form submission
-  handleSubmit = (evt) => {
-    evt.preventDefault();
-    
-    const formData = { ...this.state };
-    delete formData.confirm;
-    delete formData.error;
+handleSubmit = (evt) => {
+  evt.preventDefault();
 
-    // The signUp function returns a promise, so we handle the response
-    signUp(formData).then((user) => {
+  const { name, email, password, confirm } = this.state;
+
+  // Username validation (only allow alphanumeric, underscore, period, and max length 24)
+  const nameRegex = /^[a-zA-Z0-9_.]{1,24}$/;
+  if (!nameRegex.test(name)) {
+    this.setState({ error: "Invalid name" });
+    return;
+  }
+
+  // Password mismatch validation
+  if (password !== confirm) {
+    this.setState({ error: "Passwords must match." });
+    return;
+  }
+
+  const formData = { ...this.state };
+  delete formData.confirm;
+  delete formData.error;
+
+  // Call signUp service with embedded validation
+  signUp(formData).then((user) => {
+    // Check if the response message is successful or has errors
+    if (user.message === "User created successfully!") {
       this.props.setUser(user); // Successfully signed up, set user
-      this.setState({ successMessage: 'Account created successfully! ' });
-    }).catch(() => {
-      // An error happened on the server
-      this.setState({ error: 'Sign Up Failed - Try Again' });
-    });
-  };
+      this.setState({ successMessage: "Account created successfully!" });
+    } else {
+      this.setState({ successMessage: "Account created successfully!" });
+    }
+  }).catch(() => {
+    // An error happened on the server
+    this.setState({ error: "Email is already taken." });
+  });
+};
+
 
 
   render() {
