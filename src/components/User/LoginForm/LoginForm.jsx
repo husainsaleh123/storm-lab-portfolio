@@ -1,9 +1,9 @@
 // src/components/User/LoginForm/LoginForm.jsx
 
 import { useState } from 'react';
-import * as usersService from '../../../utilities/users-service';
+import * as usersService from '../../../utilities/users-service'; // Service to handle API calls
 import styles from "./LoginForm.module.scss";
-import { Navigate } from 'react-router-dom';  // Import Navigate component
+import { Navigate } from 'react-router-dom';  // Import Navigate component for redirection
 
 export default function LoginForm({ setUser }) {
   const [credentials, setCredentials] = useState({
@@ -15,17 +15,22 @@ export default function LoginForm({ setUser }) {
 
   function handleChange(evt) {
     setCredentials({ ...credentials, [evt.target.name]: evt.target.value });
-    setError('');
+    setError(''); // Reset error on input change
   }
 
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
-      const user = await usersService.login(credentials);  // Call login service
-      setUser(user);  // Set the logged-in user
+      const user = await usersService.login(credentials);  // This should return both the user object and token
+
+      // Store the JWT token in localStorage
+      localStorage.setItem("jwtToken", user.token);  // Store the token in localStorage
+      localStorage.setItem("user", JSON.stringify(user));  // Store user details (name, email)
+
+      setUser(user);  // Pass the user data to the parent component to manage app state
       setRedirectToReviews(true);  // Trigger redirection after successful login
     } catch {
-      setError('Log In Failed, Please Try Again');  // Set generic error if login fails
+      setError('Log In Failed, Please Try Again');  // Set error message if login fails
     }
   }
 

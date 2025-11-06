@@ -2,16 +2,29 @@
 
 import mongoose from 'mongoose';
 
+const Schema = mongoose.Schema;
+
 // Creating the review schema
-const reviewSchema = new mongoose.Schema({
+const reviewSchema = new Schema({
   // Reference to the User model (user's _id)
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  user: { 
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: "User", 
+    required: true 
+  },
 
-  // User's name, can be anonymous if not provided
-  name: { type: String, required: false, default: 'Anonymous' },
+  // Storing the user's name and email explicitly in the review
+  name: { 
+    type: String, 
+    required: false, 
+    default: 'Anonymous' 
+  },
 
-  // Email of the user, default to 'Anonymous user' if not provided
-  email: { type: String, required: false, default: 'Anonymous user' },
+  email: { 
+    type: String, 
+    required: false, 
+    default: 'Anonymous user' 
+  },
 
   // Rating out of 5
   rating: { 
@@ -23,13 +36,35 @@ const reviewSchema = new mongoose.Schema({
   },
 
   // Review message
-  message: { type: String, required: false, default: 'none' },
+  message: { 
+    type: String, 
+    required: false, 
+    default: 'none' 
+  },
 }, {
   // Timestamps will automatically add createdAt and updatedAt fields
   timestamps: true
 });
 
-// Creating the model from the schema
+// Hook to populate the 'name' and 'email' fields from the 'User' model when querying reviews
+reviewSchema.pre('save', async function(next) {
+  if (this.user) {
+    try {
+      const user = await mongoose.model('User').findById(this.user);
+      if (user) {
+        this.name = user.name;
+        this.email = user.email;
+      }
+      next();
+    } catch (err) {
+      next(err); // Pass the error to the next middleware
+    }
+  } else {
+    next(); // Proceed if there is no user
+  }
+});
+
+// Create the model from the schema
 const Review = mongoose.model('Review', reviewSchema);
 
 export default Review;

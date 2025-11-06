@@ -4,35 +4,34 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import Font
 import { faUser, faEnvelope, faStar, faComment } from '@fortawesome/free-solid-svg-icons'; // Import specific icons
 import styles from './ReviewForm.module.scss';
 
-const ReviewForm = ({ reviewData, handleInputChange, handleSubmit }) => {
+const ReviewForm = ({ reviewData, handleInputChange, handleSubmit, user }) => {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
+      {/* Name field (read-only) */}
       <label className={styles.label}>
         <span><FontAwesomeIcon icon={faUser} className={styles.icon} /> Name</span>
         <input
           type="text"
           name="name"
-          value={reviewData.name}
-          onChange={handleInputChange}
-          required
-          placeholder="Enter your name"
-          className={styles.input}  // Apply the same input style
+          value={user?.name || reviewData.name}  // Default to the user's name, or use the provided reviewData
+          readOnly  // Make it read-only since it's populated from the user
+          className={styles.input}
         />
       </label>
 
+      {/* Email field (read-only) */}
       <label className={styles.label}>
         <span><FontAwesomeIcon icon={faEnvelope} className={styles.icon} /> Email</span>
         <input
           type="email"
           name="email"
-          value={reviewData.email}
-          onChange={handleInputChange}
-          required
-          placeholder="Enter your email"
-          className={styles.input}  // Apply the same input style
+          value={user?.email || reviewData.email}  // Default to the user's email, or use the provided reviewData
+          readOnly  // Make it read-only since it's populated from the user
+          className={styles.input}
         />
       </label>
 
+      {/* Rating field */}
       <label className={styles.label}>
         <span><FontAwesomeIcon icon={faStar} className={styles.icon} /> Rating</span>
         <select
@@ -40,7 +39,7 @@ const ReviewForm = ({ reviewData, handleInputChange, handleSubmit }) => {
           value={reviewData.rating}
           onChange={handleInputChange}
           required
-          className={styles.input}  // Apply the same input style
+          className={styles.input}
         >
           <option value="">Select a rating</option>
           <option value="1">1</option>
@@ -51,6 +50,7 @@ const ReviewForm = ({ reviewData, handleInputChange, handleSubmit }) => {
         </select>
       </label>
 
+      {/* Message field */}
       <label className={styles.label}>
         <span><FontAwesomeIcon icon={faComment} className={styles.icon} /> Message</span>
         <textarea
@@ -58,10 +58,11 @@ const ReviewForm = ({ reviewData, handleInputChange, handleSubmit }) => {
           value={reviewData.message}
           onChange={handleInputChange}
           placeholder="Write your review here"
-          className={styles.input}  // Apply the same input style
+          className={styles.input}
         />
       </label>
 
+      {/* Submit button */}
       <button type="submit" className={styles.submitButton}>
         Submit review
       </button>
