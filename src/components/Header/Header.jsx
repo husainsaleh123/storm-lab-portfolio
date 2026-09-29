@@ -1,82 +1,75 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom'; // Import useLocation for current route
-import styles from "./Header.module.scss";
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import styles from './Header.module.scss';
+import { useLanguage } from '../../context/LanguageContext';
 
-const Header = () => {
-  const location = useLocation(); // Get current route
-  const [menuOpen, setMenuOpen] = useState(false); // Track mobile menu open state
+const navigation = [
+  { id: 'home', href: '/#top' },
+  { id: 'work', href: '/#work' },
+  { id: 'about', href: '/about' },
+  { id: 'contact', href: '/#contact' },
+];
 
-  // Determine the active page based on the current route
-  const getActivePage = () => {
+export default function Header() {
+  const location = useLocation();
+  const { language, setLanguage, t } = useLanguage();
+  const [open, setOpen] = useState(false);
+  const activePage = () => {
     if (location.pathname === '/about') return 'about';
-    if (location.pathname === '/projects') return 'projects';
-    if (location.pathname === '/contact' || location.pathname === '/show-contact') return 'contact';
-    if (location.pathname === '/add-review') return 'reviews';
-    if (location.pathname.startsWith('/reviews')) return 'reviews'; // Check for both /reviews and /reviews/:id
-    return 'home'; // Default to home if no other match
+    if (location.pathname === '/contact') return 'contact';
+    if (location.pathname.startsWith('/work/') || location.pathname.startsWith('/projects')) return 'work';
+    return 'home';
   };
-
-  const [activePage, setActivePage] = useState(getActivePage()); // Set active page based on the route
+  const [active, setActive] = useState(activePage);
 
   useEffect(() => {
-    // Update the active page when the location changes
-    setActivePage(getActivePage());
-  }, [location]); // Re-run when location changes
+    if (location.pathname === '/about') { setActive('about'); return; }
+    if (location.pathname === '/contact') { setActive('contact'); return; }
+    if (location.pathname.startsWith('/work/') || location.pathname.startsWith('/projects')) { setActive('work'); return; }
+    if (location.pathname !== '/') return;
+    const sections = navigation
+      .map(item => document.getElementById(item.id))
+      .filter(Boolean);
 
-  return (
-    <header className={styles.header}>
-      <Link to="/">
-        <img className={styles.logo} src="/src/assets/images/logo.png" alt="Logo" />
-      </Link>
+    const observer = new IntersectionObserver(
+      entries => {
+        const visible = entries
+          .filter(entry => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(visible.target.id);
+      },
+      { rootMargin: '-25% 0px -55% 0px', threshold: [0, 0.15, 0.4] }
+    );
 
-      {/* Hamburger button for mobile */}
-      <button
-        className={styles.hamburger}
-        onClick={() => setMenuOpen(!menuOpen)} // Toggle menu open/close
-        aria-label="Toggle menu"
-      >
-        ☰
-      </button>
+    sections.forEach(section => observer.observe(section));
+    const clearAtTop = () => window.scrollY < 220 && setActive('home');
+    window.addEventListener('scroll', clearAtTop, { passive: true });
 
-      <ul className={`${styles.nav} ${menuOpen ? styles.navOpen : ''}`}>
-        {/* Home Link */}
-        <li
-          className={`${styles.navItem} ${activePage === 'home' ? styles.active : ''}`}
-          onClick={() => setMenuOpen(false)} // Close menu on click
-        >
-          <Link to="/">Home</Link>
-        </li>
-        {/* About Link */}
-        <li
-          className={`${styles.navItem} ${activePage === 'about' ? styles.active : ''}`}
-          onClick={() => setMenuOpen(false)}
-        >
-          <Link to="/about">About</Link>
-        </li>
-        {/* Projects Link */}
-        <li
-          className={`${styles.navItem} ${activePage === 'projects' ? styles.active : ''}`}
-          onClick={() => setMenuOpen(false)}
-        >
-          <Link to="/projects">Projects</Link>
-        </li>
-        {/* Reviews Link */}
-        <li
-          className={`${styles.navItem} ${activePage === 'reviews' ? styles.active : ''}`}
-          onClick={() => setMenuOpen(false)}
-        >
-          <Link to="/reviews">Reviews</Link>
-        </li>
-        {/* Contact Link */}
-        <li
-          className={`${styles.navItem} ${activePage === 'contact' ? styles.active : ''}`}
-          onClick={() => setMenuOpen(false)}
-        >
-          <Link to="/contact">Contact</Link>
-        </li>
-      </ul>
-    </header>
-  );
-};
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', clearAtTop);
+    };
+  }, [location.pathname]);
 
-export default Header;
+  const select = id => {
+    setActive(id);
+    setOpen(false);
+  };
+
+  return <header className={styles.header}>
+    <a className={styles.brand} href="/#top" onClick={() => select('home')}>H<span>A</span></a>
+    <button className={styles.toggle} onClick={() => setOpen(!open)} aria-label={t.nav.menu} aria-expanded={open}>{open ? '×' : '☰'}</button>
+    <nav className={open ? styles.open : ''} aria-label="Main navigation">
+      {navigation.map(item => <a
+        key={item.id}
+        href={item.href}
+        className={active === item.id ? styles.active : ''}
+        aria-current={active === item.id ? 'page' : undefined}
+        onClick={() => select(item.id)}
+      >{t.nav[item.id]}</a>)}
+    </nav>
+    <div className={styles.actions}>
+      <button className={styles.language} onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')} lang={language === 'en' ? 'ar' : 'en'} aria-label={language === 'en' ? 'العربية' : 'English'}>{language === 'en' ? 'العربية' : 'EN'}</button>
+    </div>
+  </header>;
+}

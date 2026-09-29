@@ -1,155 +1,68 @@
-html, body{
-    margin:0;
-    padding:0;
-    border-style: border-box;
-}
-
 .header {
-    padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #0d53d3;  // Blue background
-    padding: 10px 30px;  // Adjust padding for spacing
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    font-family: 'JetBrains Mono', monospace;
-    position: sticky;  /* Keep the header at the top */
-    top: 0;  /* Stick the header to the top */
-    z-index: 1000;  /* Ensure it stays above other content */
+  height: 82px;
+  padding: 0 clamp(20px, 5vw, 72px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #0d53d3;
+  color: #f0f0f0;
+  border-bottom: 1px solid #0a43aa;
+  position: sticky;
+  top: 0;
+  z-index: 20;
 }
 
-.logo {
-    width: 40px;
-    height: auto;
+.brand { font: 700 33px var(--font-primary); }
+.brand span { color: #f0f0f0; }
+
+.header nav {
+  display: flex;
+  gap: 8px;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: .12em;
+  font-weight: 700;
 }
 
-.nav {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.header nav a {
+  padding: 11px 18px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  transition: color .25s, background .25s, border-color .25s, transform .25s;
 }
 
-.navItem {
-    margin: 0 10px;
-    color: #EAEAEA;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 18px;
-    font-weight: 500;
-    cursor: pointer;
-    padding: 10px 20px;  // Same padding for all items to avoid shifting
+.header nav a:hover {
+  border-color: rgba(240, 240, 240, .55);
+  transform: translateY(-1px);
 }
 
-/* Target the Link component directly */
-.navItem a {
-  color: inherit;  /* Inherit the color from the parent (navItem) */
-  text-decoration: none;  /* Remove the default underline */
+.header nav a.active {
+  color: #0d53d3;
+  background: #f0f0f0;
+  border-color: #f0f0f0;
+  box-shadow: 0 5px 15px rgba(5, 36, 95, .22);
 }
 
-/* Alternatively, globally for all Link components */
-a {
-  color: inherit;  /* Remove the default purple color */
-  text-decoration: none;  /* Remove the underline */
-}
+.actions { display: flex; align-items: center; gap: 18px; }
+.language { background: transparent; color: inherit; border: 1px solid rgba(240,240,240,.55); border-radius: 999px; padding: 8px 12px; cursor: pointer; font-size: 12px; font-weight: 700; }
+.language:hover { background: #f0f0f0; color: #0d53d3; }
 
+.toggle { display: none; background: none; border: 0; font-size: 25px; }
 
-.navItem:hover{
-    color: #F0F0F0;  // Change color on hover
-    text-decoration: underline;
-}
-
-.navItem::after {
-  content: '';  /* Empty content to create the pseudo-element */
-  position: absolute;
-  bottom: -5px;  /* Add space between the text and underline (adjust value as needed) */
-  left: 0;
-  width: 0%;  /* Start with no width */
-  height: 3px;  /* Set the thickness of the underline */
-  background-color: #F0F0F0;  /* Color of the underline */
-  transition: width 0.3s ease-in-out;  /* Animate the width on hover */
-}
-
-.active {
-  background-color: #F0F0F0;  // White background for the active item
-  color: #0d53d3;  // Blue text for active item
-  border-radius: 15px;  // Rounded corners for active item
-  font-weight: bold;  // Bold text for active item
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);  // Optional shadow effect for active item
-}
-
-.navItem.active::after {
-    text-decoration: none;
-}
-
-.navItem.active:hover{
-    color: #0d53d3;  // Change color on hover
-    text-decoration: none;
-}
-
-/* Hamburger icon button */
-.hamburger {
-  display: none;
-  font-size: 28px;
-  background: none;
-  border: none;
-  color: #F0F0F0;
-  cursor: pointer;
-}
-
-
-@media (max-width: 1024px) {
-    .navItem {
-        margin: 0 8px;
-        color: #F0F0F0;
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 16px;
-        font-weight: 500;
-        cursor: pointer;
-        padding: 8px 16px;  
-    }
-
-    .active {
-        background-color: #F0F0F0;  // White background for the active item
-        color: #0d53d3;  // Blue text for active item
-        border-radius: 15px;  // Rounded corners for active item
-        font-weight: bold;  // Bold text for active item
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);  // Optional shadow effect for active item
-    }
-
-    .navItem.active::after {
-        text-decoration: none;
-    }
-
-    .navItem.active:hover{
-        color: #0d53d3;  // Change color on hover
-        text-decoration: none;
-    }
-}
-
-@media (max-width: 800px) {
-  .hamburger {
-    display: block;  /* Show hamburger icon */
-  }
-
-  .nav {
-    display: flex;
-    flex-direction: column;
+@media (max-width: 700px) {
+  .actions { margin-inline-start: auto; margin-inline-end: 14px; }
+  .toggle { display: block; }
+  .header nav {
     position: absolute;
-    top: 60px;  /* Adjust based on header height */
+    top: 81px;
+    left: 0;
     right: 0;
-    background-color: #0d53d3;
-    width: 100%;
-    padding: 20px;
-    transform: translateX(100%); /* Hidden by default */
-    transition: transform 0.3s ease-in-out;
+    background: #0d53d3;
+    color: #f0f0f0;
+    display: none;
+    flex-direction: column;
+    padding: 25px;
   }
-
-  .nav.navOpen {
-    transform: translateX(0); /* Slide in menu */
-  }
-
-  .navItem {
-    margin: 10px 0;  /* Vertical spacing in mobile menu */
-  }
+  .header nav.open { display: flex; }
+  .header nav a { text-align: center; }
 }

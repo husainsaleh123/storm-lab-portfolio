@@ -1,6 +1,6 @@
 // pages/App/App.jsx
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'; // useLocation for path detection
 import 'font-awesome/css/font-awesome.min.css';
 import { getUser } from '../../utilities/users-service';
@@ -18,6 +18,7 @@ import AddReviewsPage from '../Reviews/AddReviewsPage/AddReviewsPage';
 import EditReviewsPage from '../Reviews/EditReviewsPage/EditReviewsPage'; 
 import Footer from '../../components/Footer/Footer';
 import Header from '../../components/Header/Header';
+import { LanguageProvider } from '../../context/LanguageContext';
 
 export default function App() {
   const [user, setUser] = useState(getUser()); // State for user
@@ -27,7 +28,7 @@ export default function App() {
   const isAuthPage = location.pathname === '/auth'; 
 
   return (
-    <main>
+    <LanguageProvider><main>
       {/* Render Header and Footer only if the current page is not '/auth' */}
       {!isAuthPage && <Header user={user} setUser={setUser} />}
       
@@ -41,6 +42,7 @@ export default function App() {
         {/* Projects Routes */}
         <Route path="/projects" element={<AllProjectsPage />} />
         <Route path="/projects/:id" element={<ShowProjectsPage />} />
+        <Route path="/work/:slug" element={<ShowProjectsPage />} />
 
         {/* Reviews Routes */}
         <Route path="/reviews" element={<AllReviewsPage />} />
@@ -60,6 +62,6 @@ export default function App() {
 
       {/* Render Footer only for pages other than AuthPage */}
       {!isAuthPage && <Footer user={user} setUser={setUser} />}
-    </main>
+    </main></LanguageProvider>
   );
 }

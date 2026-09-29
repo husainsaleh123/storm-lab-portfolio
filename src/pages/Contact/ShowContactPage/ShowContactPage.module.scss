@@ -8,7 +8,7 @@
 }
 
 .heading {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-primary);
   font-weight: 700;
   font-size: 30px;
   margin: 60px 0 50px;
@@ -29,7 +29,7 @@
 
 /* Contact info text styling */
 .contactDetails p {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-primary);
   font-weight: 600;
   color: #1a1a1a;
   margin-bottom: 20px;
@@ -48,7 +48,7 @@
   border: 0;
   background: linear-gradient(180deg, #1b74ff, #0d53d3);
   color: #fff;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-primary);
   font-weight: 700;
   border-radius: 8px;
   transition: transform 0.05s ease, filter 0.2s ease;

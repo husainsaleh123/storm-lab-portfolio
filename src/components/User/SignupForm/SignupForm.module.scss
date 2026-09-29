@@ -45,7 +45,7 @@
   font-weight: 600;
   color: white;
   font-size: 16px;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-primary);
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -63,7 +63,7 @@
   color: #ff0000;
   margin-top: 2px; /* Reduced margin-top */
   margin-bottom: 10px; /* Reduced margin-bottom */
-  font-family: 'Jetbrains Mono';
+  font-family: var(--font-primary);
   font-weight: 600;
 }
 
@@ -75,7 +75,7 @@
   margin-bottom: 0; /* Remove bottom margin */
   transition: margin-top 0.3s ease, margin-bottom 0.3s ease; /* Smooth transition */
   text-align: center; /* Center the error message */
-  font-family: 'JetBrains Mono', monospace; /* Correct font */
+  font-family: var(--font-primary); /* Correct font */
   font-weight: 600; /* Correct font weight */
 }
 
@@ -90,7 +90,7 @@
   font-size: 16px;
   margin-top: 10px;
   display: block; // Ensure the message is displayed when state is updated
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-family: var(--font-primary);
   font-weight: 600;
 }
 

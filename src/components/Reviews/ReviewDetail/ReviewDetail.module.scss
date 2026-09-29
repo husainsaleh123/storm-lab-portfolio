@@ -2,14 +2,14 @@
 .container h2 {
   text-align: center;
   margin: 80px auto 1px;
-  font-family: 'Jetbrains Mono';
+  font-family: var(--font-primary);
   font-size: 32px;
   font-weight: 700;
 }
 
 .container p {
   text-align: center;
-  font-family: 'Jetbrains Mono';
+  font-family: var(--font-primary);
   font-size: 20px;
 }
 
@@ -21,7 +21,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 50%;
   line-height: 2;
-  font-family: 'Jetbrains Mono';
+  font-family: var(--font-primary);
 }
 
 .detail {
@@ -49,7 +49,7 @@
   margin-bottom: 10px;
   border: none;
   border-radius: 5px;
-  font-family: 'Jetbrains Mono';
+  font-family: var(--font-primary);
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;

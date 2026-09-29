@@ -22,6 +22,13 @@ const contactSchema = new mongoose.Schema({
     message: 'Phone number must be a valid format.' 
   },
 
+  company: {
+    type: String,
+    trim: true,
+    maxlength: 120,
+    default: '',
+  },
+
   // Optional: Service type selection (dropdown)
   serviceType: {
     type: String,

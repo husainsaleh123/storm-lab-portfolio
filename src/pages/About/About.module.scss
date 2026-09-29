@@ -1,0 +1,55 @@
+.page{background:#f0f0f0;color:#111827;overflow:hidden}
+.intro{min-height:78vh;padding:clamp(55px,8vw,120px) clamp(22px,6vw,90px);display:flex;flex-direction:column;justify-content:space-between;border-bottom:1px solid #111827}
+.kicker,.story span,.software header>span,.credentials header>span{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.intro h1{font:400 clamp(64px,10vw,155px)/.84 var(--font-primary);letter-spacing:-.065em;margin:70px 0}
+.intro h1 em,.software h2 em,.credentials h2 em{color:#0d53d3;font-weight:400}
+.lead{font-size:clamp(19px,2.1vw,30px);line-height:1.4;width:100%;max-width:none;margin:0}
+.story{padding:clamp(80px,10vw,150px) clamp(22px,7vw,110px);display:grid;grid-template-columns:4fr 7fr;gap:8vw;align-items:center;background:#dfe7f4}
+.portrait{position:relative}
+.portrait:before{content:'';position:absolute;inset:-16px 16px 16px -16px;border:2px solid #0d53d3}
+.portrait img{width:100%;display:block;position:relative}
+.copy h2{font:400 clamp(45px,6vw,92px)/.95 var(--font-primary);letter-spacing:-.05em;margin:35px 0}
+.copy p{font-size:clamp(17px,1.5vw,23px);line-height:1.6;max-width:750px}
+.copy a{display:inline-flex;justify-content:space-between;gap:45px;margin-top:22px;min-width:190px;padding:16px 20px;border-radius:999px;background:#0d53d3;color:#f0f0f0;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;transition:.25s}
+.copy a:hover{background:#0a43aa;transform:translateY(-2px)}
+.software{padding:clamp(80px,10vw,150px) clamp(22px,6vw,90px)}
+.software header{display:flex;justify-content:space-between;align-items:start;margin-bottom:70px}
+.software h2{font:400 clamp(48px,7vw,105px)/.92 var(--font-primary);letter-spacing:-.055em;margin:0}
+.softwareGrid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #9ba5b5;border-left:1px solid #9ba5b5}
+.softwareGrid article{min-height:280px;padding:28px;position:relative;border-right:1px solid #9ba5b5;border-bottom:1px solid #9ba5b5;transition:background .25s,color .25s}
+.softwareGrid article:hover{background:#0d53d3;color:#f0f0f0}
+.softwareIcon{border-radius:0;width:58px;height:58px;display:grid;place-items:center;font:700 21px var(--font-primary)}
+.softwareIcon img{border-radius:0;width:100%;height:100%;display:block;object-fit:contain}
+.softwareGrid small{position:absolute;right:25px;top:28px}
+.softwareGrid p{margin:0;font-size:13px;text-transform:uppercase;letter-spacing:.08em}
+.softwareGrid h3{font:400 28px var(--font-primary);margin:75px 0 7px}
+.credentials{padding:clamp(80px,10vw,150px) clamp(22px,6vw,90px);background:#dfe7f4}
+.credentials header{display:grid;grid-template-columns:1fr 2fr;align-items:start;gap:40px;margin-bottom:75px}
+.credentials h2{font:400 clamp(48px,7vw,105px)/.92 var(--font-primary);letter-spacing:-.055em;margin:0}
+.credentialList{border-top:1px solid #8795aa}
+.credentialList article{display:grid;grid-template-columns:70px 2fr 1fr 80px;gap:30px;align-items:center;padding:34px 0;border-bottom:1px solid #8795aa;transition:padding .3s,color .3s}
+.credentialList article:hover{padding-left:15px;color:#0d53d3}
+.credentialList article>span,.credentialList small{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.credentialList h3{font:400 clamp(27px,3vw,44px)/1 var(--font-primary);margin:8px 0 0}
+.credentialList p,.credentialList time{margin:0;font-size:14px}
+.credentialList time{text-align:right}
+[data-about-reveal]{opacity:0;transform:translateY(40px);transition:opacity .8s,transform .8s}
+.visible{opacity:1;transform:none}
+@media(max-width:850px){.story{grid-template-columns:1fr}
+.portrait{max-width:430px}
+.software header{display:block}
+.software h2{margin-top:28px}
+.softwareGrid{grid-template-columns:repeat(2,1fr)}
+.credentials header{grid-template-columns:1fr}
+.credentialList article{grid-template-columns:45px 1fr 80px}
+.credentialList article>p{grid-column:2}
+.credentialList time{grid-column:3;grid-row:1}
+}
+@media(max-width:550px){.intro{min-height:auto;padding:32px 20px 56px;gap:18px}.intro h1{font-size:clamp(48px,15vw,70px);line-height:.9;letter-spacing:-.055em;margin:12px 0 8px;overflow-wrap:anywhere}.intro h1 br{display:none}.lead{font-size:clamp(17px,5vw,21px);line-height:1.5}
+.softwareGrid{grid-template-columns:1fr}
+.softwareGrid article{min-height:230px}
+.credentialList article{grid-template-columns:35px 1fr}
+.credentialList time{grid-column:2;grid-row:auto;text-align:left}
+}
+@media(prefers-reduced-motion:reduce){[data-about-reveal]{opacity:1;transform:none;transition:none}
+}

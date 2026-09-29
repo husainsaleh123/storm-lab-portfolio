@@ -1,10 +1,11 @@
 // src/components/Reviews/ReviewForm/ReviewForm.jsx
+// src/components/Reviews/ReviewForm/ReviewForm.jsx
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Import FontAwesome icons
 import { faUser, faEnvelope, faStar, faComment } from '@fortawesome/free-solid-svg-icons'; // Import specific icons
 import styles from './ReviewForm.module.scss';
 
-const ReviewForm = ({ reviewData, handleInputChange, handleSubmit, user }) => {
+const ReviewForm = ({ reviewData, handleInputChange, handleSubmit }) => {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       {/* Name field (read-only) */}
@@ -13,7 +14,7 @@ const ReviewForm = ({ reviewData, handleInputChange, handleSubmit, user }) => {
         <input
           type="text"
           name="name"
-          value={user?.name || reviewData.name}  // Default to the user's name, or use the provided reviewData
+          value={reviewData.name}  // Ensure the value is controlled by state
           readOnly  // Make it read-only since it's populated from the user
           className={styles.input}
         />
@@ -25,7 +26,7 @@ const ReviewForm = ({ reviewData, handleInputChange, handleSubmit, user }) => {
         <input
           type="email"
           name="email"
-          value={user?.email || reviewData.email}  // Default to the user's email, or use the provided reviewData
+          value={reviewData.email}  // Ensure the value is controlled by state
           readOnly  // Make it read-only since it's populated from the user
           className={styles.input}
         />
@@ -36,7 +37,7 @@ const ReviewForm = ({ reviewData, handleInputChange, handleSubmit, user }) => {
         <span><FontAwesomeIcon icon={faStar} className={styles.icon} /> Rating</span>
         <select
           name="rating"
-          value={reviewData.rating}
+          value={reviewData.rating}  // Ensure the value is controlled by state
           onChange={handleInputChange}
           required
           className={styles.input}
@@ -55,7 +56,7 @@ const ReviewForm = ({ reviewData, handleInputChange, handleSubmit, user }) => {
         <span><FontAwesomeIcon icon={faComment} className={styles.icon} /> Message</span>
         <textarea
           name="message"
-          value={reviewData.message}
+          value={reviewData.message}  // Ensure the value is controlled by state
           onChange={handleInputChange}
           placeholder="Write your review here"
           className={styles.input}

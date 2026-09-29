@@ -1,5 +1,4 @@
 // src/utilities/users-api.js
-
 import sendRequest from './send-request';
 
 const BASE_URL = '/api/users'; // Base URL for user-related API requests
@@ -28,3 +27,4 @@ export function getReviews(token) {
     'Authorization': `Bearer ${token}`, // Include token for authorized requests
   });
 }
+

@@ -1,202 +1,78 @@
-// src/pages/Contact/Contact/Contact.jsx
-
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; 
 import styles from './Contact.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faEnvelope, faPhone, faPen, faPuzzlePiece, faComment } from '@fortawesome/free-solid-svg-icons';
+import { createContact } from '../../../utilities/contact-api';
+import { useLanguage } from '../../../context/LanguageContext';
 
-const initial = {
-  name: '',
-  email: '',
-  phone: '',
-  subject: '',
-  serviceType: 'Website Redesign & Optimization', // Default to 'Website Redesign & Optimization'
-  message: '',
-  company: '', // Honeypot field
-};
+const emptyForm = { name: '', email: '', phone: '', company: '', message: '', website: '' };
 
-const Contact = () => {
-  const [form, setForm] = useState(initial);
-  const [loading, setLoading] = useState(false);
-  const [ok, setOk] = useState(null); // success or error message
-  const [errors, setErrors] = useState({}); // For tracking field-specific errors
-  const navigate = useNavigate(); 
+export default function Contact() {
+  const { t } = useLanguage();
+  const [form, setForm] = useState(emptyForm);
+  const [errors, setErrors] = useState({});
+  const [status, setStatus] = useState({ type: '', message: '' });
+  const [sending, setSending] = useState(false);
 
-  const onChange = (e) => {
-    const { name, value } = e.target;
-    setForm((f) => ({ ...f, [name]: value }));
+  const update = event => {
+    const { name, value } = event.target;
+    setForm(current => ({ ...current, [name]: value }));
+    setErrors(current => ({ ...current, [name]: '' }));
   };
 
   const validate = () => {
-    const errors = {};
-
-    // Validate Name
-    if (!form.name.trim()) errors.name = 'Please enter your name.';
-
-    // Validate Email
-    if (!/^\S+@\S+\.\S+$/.test(form.email)) errors.email = 'Please enter a valid email.';
-
-    // Validate Phone (if provided)
-    if (!form.phone.trim()) errors.phone = 'Please enter your phone number.';
-    else if (!/^[\d+()[\]\-\s]{6,20}$/.test(form.phone)) errors.phone = 'Please enter a valid phone number.';
-
-    // Validate Subject
-    if (!form.subject.trim()) errors.subject = 'Please add a subject.';
-
-    // Validate Service Type
-    if (!form.serviceType) errors.serviceType = 'Please choose a service type.';
-
-    // Validate Message
-    if (!form.message.trim()) errors.message = 'Please write a message.';
-
-    setErrors(errors); 
-    return Object.keys(errors).length === 0; 
+    const next = {};
+    if (!form.name.trim()) next.name = t.contact.nameError;
+    if (!/^\S+@\S+\.\S+$/.test(form.email)) next.email = t.contact.emailError;
+    if (!/^[\d+()[\]\-\s]{6,20}$/.test(form.phone)) next.phone = t.contact.phoneError;
+    if (!form.message.trim()) next.message = t.contact.messageError;
+    setErrors(next);
+    return Object.keys(next).length === 0;
   };
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-
-    const isValid = validate(); 
-    if (!isValid) return;
-
-    // Bot trap
-    if (form.company) return;
-
-    setLoading(true);
-    setOk(null);
-
+  const submit = async event => {
+    event.preventDefault();
+    if (form.website || !validate()) return;
+    setSending(true);
+    setStatus({ type: '', message: '' });
     try {
-        // Send the data to the server
-        const res = await fetch('http://localhost:3000/api/contacts', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(form),
-        });
-
-        const data = await res.json();
-        if (!res.ok) throw new Error(data?.error || 'Something went wrong');
-
-        setOk({ type: 'success', msg: 'Thanks! Your message was sent.' });
-        setForm(initial);
-
-        // Redirect to ShowContactPage after successful submission
-        navigate('/show-contact'); // Navigate to the ShowContactPage
-
+      await createContact(form);
+      setForm(emptyForm);
+      setStatus({ type: 'success', message: t.contact.success });
     } catch (error) {
-        setOk({ type: 'error', msg: error.message });
+      setStatus({ type: 'error', message: error.message || t.contact.error });
     } finally {
-        setLoading(false);
+      setSending(false);
     }
-};
+  };
 
-  return (
-    <main className={styles.wrapper}>
-      <h2 className={styles.heading}>Stay in touch with us!</h2>
+  return <main className={styles.page}>
+    <section className={styles.intro}>
+      <span className={styles.kicker}>{t.contact.kicker}</span>
+      <h1><span className={styles.titleLine}>{t.contact.titleA}</span><span className={styles.titleLine}><em>{t.contact.titleB}</em></span></h1>
+      <p className={styles.introText}>{t.contact.intro}</p>
+      <div className={styles.mark}>↘</div>
+    </section>
 
-      <form className={styles.card} onSubmit={onSubmit} noValidate>
-        <input
-          type="text"
-          name="company"
-          value={form.company}
-          onChange={onChange}
-          className={styles.honeypot}
-          autoComplete="off"
-          tabIndex={-1}
-        />
-
-        <label className={styles.label}>
-          <span><FontAwesomeIcon icon={faUser} className={styles.icon} /> Name</span>
-          <input
-            name="name"
-            placeholder="Your full name"
-            value={form.name}
-            onChange={onChange}
-            className={errors.name ? styles.errorInput : ''}
-          />
-          {errors.name && <div className={styles.errorMsg}>{errors.name}</div>}
+    <section className={styles.formSide}>
+      <form onSubmit={submit} noValidate>
+        <input className={styles.honeypot} name="website" value={form.website} onChange={update} tabIndex="-1" autoComplete="off" aria-hidden="true" />
+        <div className={styles.row}>
+          <Field label={t.contact.name} name="name" value={form.name} error={errors.name} onChange={update} placeholder="Husain Ali" autoComplete="name" />
+          <Field label={t.contact.email} name="email" type="email" value={form.email} error={errors.email} onChange={update} placeholder="you@email.com" autoComplete="email" />
+        </div>
+        <Field label={t.contact.phone} name="phone" type="tel" value={form.phone} error={errors.phone} onChange={update} placeholder="+973 0000 0000" autoComplete="tel" />
+        <Field label={t.contact.company} name="company" value={form.company} onChange={update} placeholder={t.contact.companyPlaceholder} autoComplete="organization" />
+        <label className={styles.field}>
+          <span>{t.contact.message}</span>
+          <textarea name="message" rows="6" value={form.message} onChange={update} placeholder={t.contact.messagePlaceholder} aria-invalid={Boolean(errors.message)} />
+          {errors.message && <small>{errors.message}</small>}
         </label>
-
-        <label className={styles.label}>
-          <span><FontAwesomeIcon icon={faEnvelope} className={styles.icon} /> Email</span>
-          <input
-            type="email"
-            name="email"
-            placeholder="you@example.com"
-            value={form.email}
-            onChange={onChange}
-            className={errors.email ? styles.errorInput : ''}
-          />
-          {errors.email && <div className={styles.errorMsg}>{errors.email}</div>}
-        </label>
-
-        <label className={styles.label}>
-          <span><FontAwesomeIcon icon={faPhone} className={styles.icon} /> Phone number</span>
-          <input
-            name="phone"
-            placeholder="+1 555 555 5555"
-            value={form.phone}
-            onChange={onChange}
-            className={errors.phone ? styles.errorInput : ''}
-          />
-          {errors.phone && <div className={styles.errorMsg}>{errors.phone}</div>}
-        </label>
-
-        <label className={styles.label}>
-          <span><FontAwesomeIcon icon={faPen} className={styles.icon} /> Subject</span>
-          <input
-            name="subject"
-            placeholder="How can we help?"
-            value={form.subject}
-            onChange={onChange}
-            className={errors.subject ? styles.errorInput : ''}
-          />
-          {errors.subject && <div className={styles.errorMsg}>{errors.subject}</div>}
-        </label>
-
-        <label className={styles.label}>
-          <span><FontAwesomeIcon icon={faPuzzlePiece} className={styles.icon} /> Select Service Type</span>
-          <select
-            name="serviceType"
-            value={form.serviceType}
-            onChange={onChange}
-            className={errors.serviceType ? styles.errorInput : ''}
-          >
-            <option value="Website Redesign & Optimization">Website Redesign & Optimization</option>
-            <option value="UI/UX Design">UI/UX Design</option>
-            <option value="Landing Page Design & Optimization">Landing Page Design & Optimization</option>
-            <option value="Other">Other</option>
-          </select>
-          {errors.serviceType && <div className={styles.errorMsg}>{errors.serviceType}</div>}
-        </label>
-
-        <label className={styles.label}>
-          <span><FontAwesomeIcon icon={faComment} className={styles.icon} /> Message</span>
-          <textarea
-            name="message"
-            rows={4}
-            placeholder="Tell us a bit about your project or question…"
-            value={form.message}
-            onChange={onChange}
-            className={errors.message ? styles.errorInput : ''}
-          />
-          {errors.message && <div className={styles.errorMsg}>{errors.message}</div>}
-        </label>
-
-        <button className={styles.submit} disabled={loading}>
-          {loading ? 'Sending…' : '✈ Submit'}
-        </button>
-
-        {ok && (
-          <div
-            className={`${styles.alert} ${ok.type === 'success' ? styles.ok : styles.err}`}
-          >
-            {ok.msg}
-          </div>
-        )}
+        <button className={styles.submit} disabled={sending}>{sending ? t.contact.sending : t.contact.send} <b>↗</b></button>
+        {status.message && <p className={`${styles.status} ${styles[status.type]}`} role="status">{status.message}</p>}
       </form>
-    </main>
-  );
-};
+    </section>
+  </main>;
+}
 
-export default Contact;
+function Field({ label, error, ...props }) {
+  return <label className={styles.field}><span>{label}</span><input {...props} aria-invalid={Boolean(error)} />{error && <small>{error}</small>}</label>;
+}

@@ -31,16 +31,22 @@ const dataController = {
   async create(req, res, next) {
     try {
       console.log("Request body:", req.body);  // Log the data being sent
+      console.log("User data (req.user):", req.user);  // Log req.user to check if it's populated correctly
 
       // Ensure that user is authenticated and extract their name and email from the JWT token (req.user)
-      const { userId, name, email } = req.user;  // Assuming the token contains userId, name, and email
+      const { userId, name, email } = req.user || {};  // Safely destructure the user data
+
+      // If userId is missing, return an error
+      if (!userId) {
+        return res.status(400).json({ error: 'User ID is missing in the token' });
+      }
 
       // Create the review and populate the name and email
       const review = await Review.create({
-        ...req.body,       // Include all other review data from req.body
-        user: userId,      // Store the userId reference
-        name,              // Use the name from the user
-        email              // Use the email from the user
+        ...req.body,        // Include all other review data from req.body
+        user: userId,       // Store the userId reference in the 'user' field
+        name,               // Use the name from the user (optional, since it's also populated in the hook)
+        email               // Use the email from the user (optional, since it's also populated in the hook)
       });
 
       // Store the review in res.locals for further use (e.g., returning in response)

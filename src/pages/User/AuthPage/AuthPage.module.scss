@@ -50,7 +50,7 @@
 }
 
 .tab {
-  font-family: 'JetBrains Mono', monospace; /* Ensure JetBrains Mono is applied */
+  font-family: var(--font-primary);
   padding: 12px 24px;
   font-size: 18px;
   cursor: pointer;
@@ -77,9 +77,9 @@
 }
 
 /* Form inputs */
-input[type="email"],
-input[type="password"],
-input[type="text"] {
+.formWrap input[type="email"],
+.formWrap input[type="password"],
+.formWrap input[type="text"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px; /* Reduced margin */
@@ -90,9 +90,9 @@ input[type="text"] {
   transition: border-color 0.3s ease;
 }
 
-input[type="email"]:focus,
-input[type="password"]:focus,
-input[type="text"]:focus {
+.formWrap input[type="email"]:focus,
+.formWrap input[type="password"]:focus,
+.formWrap input[type="text"]:focus {
   border-color: #1b74ff;
   outline: none;
 }
@@ -106,7 +106,7 @@ input[type="text"]:focus {
   font-weight: 600;
   color: white;
   font-size: 16px;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-primary);
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -120,7 +120,7 @@ input[type="text"]:focus {
 
 /* Switch between login and sign-up */
 .switchLine {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-primary);
   font-size: 16px;
   font-weight: 500;
   margin-top: 5px; /* Reduced margin */

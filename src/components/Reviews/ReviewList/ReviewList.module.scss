@@ -6,7 +6,7 @@
   min-height: 70vh;
   text-align: center;
   padding: 20px;
-  font-family: 'JetBrains Mono', monospace;  /* Ensuring JetBrains Mono is used */
+  font-family: var(--font-primary);
   margin-bottom: 80px;
 }
 
@@ -20,7 +20,7 @@
 }
 
 h1 {
-  font-family: 'JetBrains Mono', monospace;  /* Ensuring JetBrains Mono is used */
+  font-family: var(--font-primary);
   font-size: 36px;
   font-weight: 700;
   color: #000;
@@ -36,7 +36,7 @@ h1 {
 }
 
 .AllReviewPText {
-  font-family: 'JetBrains Mono', monospace;  /* Ensuring JetBrains Mono is used */
+  font-family: var(--font-primary);
   font-size: 20px;
   color: #000;
   margin-top: 5px;
@@ -47,7 +47,7 @@ h1 {
   padding: 8px 14px;
   background: #4b6ee1;
   color: white;
-  font-family: 'JetBrains Mono', monospace;  /* Ensuring JetBrains Mono is used */
+  font-family: var(--font-primary);
   font-size: 16px;
   font-weight: 700;
   margin-top: 3px;
@@ -176,7 +176,7 @@ h1 {
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  font-family: 'Jetbrains Mono';
+  font-family: var(--font-primary);
 }
 
 .backButton {
@@ -227,7 +227,7 @@ h1 {
 }
 
 .NoReviewText {
-  font-family: 'JetBrains Mono', monospace;  /* Ensuring JetBrains Mono is used */
+  font-family: var(--font-primary);
   font-weight: 700;
   font-size: 30px;
   margin: 20px 0;
@@ -235,7 +235,7 @@ h1 {
 }
 
 .addReview {
-  font-family: 'JetBrains Mono', monospace;  /* Ensuring JetBrains Mono is used */
+  font-family: var(--font-primary);
   font-weight: 600;
   font-size: 20px;
   margin: 0px auto 40px;
@@ -277,7 +277,7 @@ h1 {
   padding: 6px 15px;
   background: #f1f1f1;
   color: #1b74ff;
-  font-family: 'JetBrains Mono', monospace;  /* Ensuring JetBrains Mono is used */
+  font-family: var(--font-primary);
   font-size: 16px;
   font-weight: 700;
   margin-top: 3px;

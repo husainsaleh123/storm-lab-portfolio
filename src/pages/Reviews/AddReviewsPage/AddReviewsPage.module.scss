@@ -13,7 +13,7 @@
 .feedback {
   margin-top: 60px;
   font-size: 36px;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-primary);
   font-weight: 700;
   margin-bottom: 0px;
   text-align: center; /* Centered the text */
@@ -22,7 +22,7 @@
 .experience {
   margin-top: 18px;
   font-size: 20px;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-primary);
   font-weight: 600;
   color: #444;
   margin-bottom: 50px;
@@ -54,7 +54,7 @@
 
 /* Heading style for the prompt message */
 .loginPrompt h1 {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-primary);
   font-size: 24px;
   font-weight: bold;
   color: #333;
@@ -63,7 +63,7 @@
 
 /* Subheading text below the main heading */
 .loginPrompt p {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-primary);
   font-size: 18px;
   color: #555;
   margin-bottom: 30px;
@@ -84,7 +84,7 @@
   margin: 10px;
   transition: 0.3s ease;
   display: inline-block; /* Ensure they stay in one line */
-  font-family: 'JetBrains Mono', monospace;  /* Set font to JetBrains Mono */
+  font-family: var(--font-primary);
   width: 150px; /* Ensuring the same width for all buttons */
   &:hover{
     background: linear-gradient(180deg, #0d53d3, #1b74ff);
@@ -117,7 +117,7 @@
 .FeedbackWlcmMsg{
   margin-top: 100px;
   text-align: center;
-  font-family: 'Jetbrains Mono';
+  font-family: var(--font-primary);
   font-size: 28px;
   font-weight: 700;
 }
@@ -125,7 +125,7 @@
 .XpShareMsg{
   margin-top: 10px;
   text-align: center;
-  font-family: 'Jetbrains Mono';
+  font-family: var(--font-primary);
   font-size: 22px;
   font-weight: 400;
   margin-bottom: 80px;

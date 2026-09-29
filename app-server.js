@@ -38,6 +38,14 @@ app.get('/show-contact', (req, res) => {
     res.sendFile(path.resolve(path.join(__dirname, indexPath)));  // Serve React app for '/show-contact'
 });
 
+app.get(['/contact', '/about'], (req, res) => {
+    res.sendFile(path.resolve(path.join(__dirname, indexPath)));
+});
+
+app.get('/work/:slug', (req, res) => {
+    res.sendFile(path.resolve(path.join(__dirname, indexPath)));
+});
+
 // Catch-all route for React (to handle non-API routes)
 app.get('/show-review', (req, res) => {
     res.sendFile(path.resolve(path.join(__dirname, indexPath)));  // Serve React app for '/show-contact'
