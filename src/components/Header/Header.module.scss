@@ -50,19 +50,21 @@
 .toggle { display: none; background: none; border: 0; font-size: 25px; }
 
 @media (max-width: 700px) {
-  .actions { margin-inline-start: auto; margin-inline-end: 14px; }
-  .toggle { display: block; }
+  .header { height: 72px; padding-inline: 20px; }
+  .brand { font-size: 30px; }
+  .actions { order: 2; margin-inline-start: auto; margin-inline-end: 10px; }
+  .toggle { order: 3; display: block; padding: 8px 0 8px 8px; cursor: pointer; }
   .header nav {
     position: absolute;
-    top: 81px;
+    top: 71px;
     left: 0;
     right: 0;
     background: #0d53d3;
     color: #f0f0f0;
     display: none;
     flex-direction: column;
-    padding: 25px;
+    padding: 18px 20px 24px;
   }
   .header nav.open { display: flex; }
-  .header nav a { text-align: center; }
+  .header nav a { padding: 14px 18px; text-align: center; }
 }
