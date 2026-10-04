@@ -28,7 +28,7 @@ export default function Home() {
     <section className={styles.work} id="work">
       <header className={styles.sectionHead} data-reveal><span>{t.home.selected}</span><h2>{t.home.workTitle}</h2></header>
       <div className={styles.grid}>{projects.map((project,index)=>{const title=language==='ar'?project.titleAr:project.title;return <article className={styles.project} key={project.slug} data-reveal>
-        <div className={styles.projectImage} style={{ ...(project.coverBackground && { background: project.coverBackground }), ...(project.coverAspectRatio && { aspectRatio: project.coverAspectRatio }), ...(project.coverFrameWidth && { width: project.coverFrameWidth, marginLeft: project.coverFrameOffset }) }}>{project.cover ? <img src={project.cover} alt={title} style={project.coverFit ? { objectFit: project.coverFit } : undefined}/> : <div className={styles.coverPlaceholder}><b>{title}</b><small>{t.home.coming}</small></div>}<span>0{index+1}</span></div>
+        <div className={styles.projectImage} style={{ ...(project.coverBackground && { background: project.coverBackground }), ...(project.coverFrameWidth && { width: project.coverFrameWidth, marginLeft: project.coverFrameOffset }) }}>{project.cover ? <img src={project.cover} alt={title} style={project.coverFit ? { objectFit: project.coverFit } : undefined}/> : <div className={styles.coverPlaceholder}><b>{title}</b><small>{t.home.coming}</small></div>}<span>0{index+1}</span></div>
         <div className={styles.projectMeta}><div><h3>{title}</h3><p>{project.type}</p></div><a className={styles.projectLink} href={`/work/${project.slug}`}>{t.home.viewMore} <b>↗</b></a></div>
       </article>})}</div>
     </section>
