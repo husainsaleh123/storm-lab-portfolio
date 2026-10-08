@@ -7,7 +7,7 @@
   justify-content: center;
   padding: 40px;
   text-align: center;
-  background: #f4f8ff;
+  background: #E9EDFF;
 }
 
 .feedback {
@@ -43,7 +43,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh; // Full screen height
-  background-color: #f0f8ff; // Light background color to match design
+  background-color: #E9EDFF; // Light background color to match design
 }
 
 /* Laptop image style */
@@ -74,7 +74,7 @@
 .btnLogin,
 .btnBack {
   padding: 12px 25px;
-  background: linear-gradient(180deg, #1b74ff, #0d53d3);
+  background: linear-gradient(180deg, #4F6DFF, #1E2A78);
   color: white;
   font-size: 18px;
   font-weight: 500;
@@ -87,7 +87,7 @@
   font-family: var(--font-primary);
   width: 150px; /* Ensuring the same width for all buttons */
   &:hover{
-    background: linear-gradient(180deg, #0d53d3, #1b74ff);
+    background: linear-gradient(180deg, #1E2A78, #4F6DFF);
     transform: scale(1.05); // Make button grow slightly on hover
   }
 }
@@ -96,8 +96,8 @@
 /* Back button style - neutral color */
 .btnBack {
   background: none;
-  border: 3px solid #0d53d3;
-  color: #0d53d3;
+  border: 3px solid #1E2A78;
+  color: #1E2A78;
   font-weight: 600;
 }
 

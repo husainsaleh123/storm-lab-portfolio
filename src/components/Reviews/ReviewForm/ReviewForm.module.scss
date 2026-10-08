@@ -1,5 +1,5 @@
 .form {
-  background: rgba(13, 83, 211, 0.1);
+  background: rgba(79, 109, 255, 0.1);
   padding: 30px;
   border-radius: 14px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
@@ -29,7 +29,7 @@
 .icon {
   margin-right: 10px; /* Space between icon and text */
   font-size: 18px;
-  color: #0d53d3;
+  color: #1E2A78;
 }
 
 .input,
@@ -50,7 +50,7 @@ textarea {
 
 .submitButton {
   padding: 12px 20px;
-  background: linear-gradient(180deg, #1b74ff, #0d53d3);
+  background: linear-gradient(180deg, #4F6DFF, #1E2A78);
   color: white;
   font-family: var(--font-primary);
   font-weight: 700;
@@ -63,6 +63,6 @@ textarea {
 }
 
 .submitButton:hover {
-  background: linear-gradient(180deg, #0d53d3, #1b74ff);
+  background: linear-gradient(180deg, #1E2A78, #4F6DFF);
   scale: 1.03;
 }

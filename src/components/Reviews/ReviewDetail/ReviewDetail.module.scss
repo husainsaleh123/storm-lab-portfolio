@@ -15,7 +15,7 @@
 
 .card {
   margin: 60px auto 10px;
-  background-color: rgba(13, 83, 211, 0.1);
+  background-color: rgba(79, 109, 255, 0.1);
   padding: 16px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -41,7 +41,7 @@
 
 .backButton {
   margin-top: 20px;
-  background: linear-gradient(180deg, #1b74ff, #0d53d3);
+  background: linear-gradient(180deg, #4F6DFF, #1E2A78);
   color: white;
   padding: 10px 20px;
   text-align: left;
@@ -54,7 +54,7 @@
   font-weight: 500;
   cursor: pointer;
   &:hover {
-    background: linear-gradient(180deg, #093991, #1b74ff);
+    background: linear-gradient(180deg, #1E2A78, #4F6DFF);
     scale: 1.02;
   }
 }

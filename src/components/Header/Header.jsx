@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import styles from './Header.module.scss';
 import { useLanguage } from '../../context/LanguageContext';
+import stormLabLogo from '../../assets/images/storm-lab-logo.png';
 
 const navigation = [
   { id: 'home', href: '/#top' },
-  { id: 'work', href: '/#work' },
   { id: 'about', href: '/about' },
+  { id: 'work', href: '/#work' },
   { id: 'contact', href: '/#contact' },
 ];
 
@@ -57,7 +58,9 @@ export default function Header() {
   };
 
   return <header className={styles.header}>
-    <a className={styles.brand} href="/#top" onClick={() => select('home')}>H<span>A</span></a>
+    <a className={styles.brand} href="/#top" onClick={() => select('home')} aria-label="Storm Lab home">
+      <img src={stormLabLogo} alt="Storm Lab" />
+    </a>
     <button className={styles.toggle} onClick={() => setOpen(!open)} aria-label={t.nav.menu} aria-expanded={open}>{open ? '×' : '☰'}</button>
     <nav className={open ? styles.open : ''} aria-label="Main navigation">
       {navigation.map(item => <a

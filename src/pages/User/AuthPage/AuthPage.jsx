@@ -4,7 +4,7 @@ import { useState } from 'react';
 import styles from '../AuthPage/AuthPage.module.scss';
 import LoginForm from '../../../components/User/LoginForm/LoginForm';
 import SignupForm from '../../../components/User/SignupForm/SignupForm';
-import logo from "../../../assets/images/logo.png";
+import logo from "../../../assets/images/storm-lab-logo.png";
 
 export default function AuthPage({ setUser }) {
   const [showLogin, setShowLogin] = useState(true);  // Default to show login

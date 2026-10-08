@@ -4,7 +4,7 @@
   display: grid;
   place-items: start center;
   padding: 24px 16px;
-  background: #f0f3fa;
+  background: #E9EDFF;
 }
 
 .heading {
@@ -20,7 +20,7 @@
 .contactDetails {
   width: 100%;
   max-width: 50%;
-  background: rgba(13, 83, 211, 0.1);
+  background: rgba(79, 109, 255, 0.1);
   border-radius: 14px;
   padding: 30px 28px 40px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
@@ -36,7 +36,7 @@
 }
 
 .contactDetails p strong {
-  color: #0d53d3;
+  color: #1E2A78;
 }
 
 /* Back Button styling */
@@ -46,7 +46,7 @@
   width: fit-content;
   padding: 10px 16px;
   border: 0;
-  background: linear-gradient(180deg, #1b74ff, #0d53d3);
+  background: linear-gradient(180deg, #4F6DFF, #1E2A78);
   color: #fff;
   font-family: var(--font-primary);
   font-weight: 700;
