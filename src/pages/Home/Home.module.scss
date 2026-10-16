@@ -18,5 +18,5 @@ $ink:#1E2A78;$cream:#E9EDFF;$acid:#4F6DFF;
 
 /* Keep content backgrounds alternating when sections are reordered. */
 .page{color:#000}
-.contentSection:nth-child(odd of .contentSection){background:#E9EDFF;color:#000}
-.contentSection:nth-child(even of .contentSection){background:#FFF;color:#000}
+.contentSection:nth-child(odd of .contentSection){background:#FFF;color:#000}
+.contentSection:nth-child(even of .contentSection){background:#E9EDFF;color:#000}
