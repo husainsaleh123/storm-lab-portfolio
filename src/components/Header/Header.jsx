@@ -28,29 +28,29 @@ export default function Header() {
     if (location.pathname === '/contact') { setActive('contact'); return; }
     if (location.pathname.startsWith('/work/') || location.pathname.startsWith('/projects')) { setActive('work'); return; }
     if (location.pathname !== '/') return;
-    const sections = navigation
-      .map(item => document.getElementById(item.id))
-      .filter(Boolean);
 
-    const observer = new IntersectionObserver(
-      entries => {
-        const visible = entries
-          .filter(entry => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible) setActive(visible.target.id);
-      },
-      { rootMargin: '-25% 0px -55% 0px', threshold: [0, 0.15, 0.4] }
-    );
+    const hashSection = location.hash.slice(1);
+    if (navigation.some(item => item.id === hashSection)) setActive(hashSection);
 
-    sections.forEach(section => observer.observe(section));
-    const clearAtTop = () => window.scrollY < 220 && setActive('home');
-    window.addEventListener('scroll', clearAtTop, { passive: true });
+    const syncActiveSection = () => {
+      const marker = window.scrollY + 96 + window.innerHeight * 0.2;
+      const current = navigation
+        .map(item => document.getElementById(item.id))
+        .filter(Boolean)
+        .reduce((selected, section) => section.offsetTop <= marker ? section.id : selected, 'home');
+      setActive(current);
+    };
+
+    const frame = window.requestAnimationFrame(syncActiveSection);
+    window.addEventListener('scroll', syncActiveSection, { passive: true });
+    window.addEventListener('resize', syncActiveSection);
 
     return () => {
-      observer.disconnect();
-      window.removeEventListener('scroll', clearAtTop);
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', syncActiveSection);
+      window.removeEventListener('resize', syncActiveSection);
     };
-  }, [location.pathname]);
+  }, [location.pathname, location.hash]);
 
   const select = id => {
     setActive(id);

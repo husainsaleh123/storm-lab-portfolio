@@ -16,13 +16,6 @@ const software = [
   { name: 'Canva', short: 'Ca', logo: canvaLogo, use: 'Social content' },
 ];
 
-// Replace these placeholders with your course names, issuers and dates.
-const credentials = [
-  { kind: 'Certification', title: 'Certification title', issuer: 'Issuing organisation', year: 'Year' },
-  { kind: 'Course', title: 'Course title', issuer: 'Course provider', year: 'Year' },
-  { kind: 'Course', title: 'Course title', issuer: 'Course provider', year: 'Year' },
-];
-
 export default function About() {
   useEffect(() => {
     const items = document.querySelectorAll('[data-about-reveal]');
@@ -58,11 +51,5 @@ export default function About() {
       </article>)}</div>
     </section>
 
-    <section className={styles.credentials} data-about-reveal>
-      <header><span>03 / Courses &amp; certifications</span><h2>Always learning.<br/><em>Always evolving.</em></h2></header>
-      <div className={styles.credentialList}>{credentials.map((item, index) => <article key={`${item.kind}-${index}`}>
-        <span>0{index + 1}</span><div><small>{item.kind}</small><h3>{item.title}</h3></div><p>{item.issuer}</p><time>{item.year}</time>
-      </article>)}</div>
-    </section>
   </main>;
 }

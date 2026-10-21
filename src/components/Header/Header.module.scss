@@ -4,8 +4,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #4F6DFF;
-  color: #E9EDFF;
+  background: #176BC1;
+  color: #EAF8FB;
   border-bottom: 0;
   position: sticky;
   top: 0;
@@ -32,20 +32,20 @@
 }
 
 .header nav a:hover {
-  border-color: rgba(233, 237, 255, .7);
+  border-color: rgba(234, 248, 251, .7);
   transform: translateY(-1px);
 }
 
 .header nav a.active {
-  color: #1E2A78;
-  background: #E9EDFF;
-  border-color: #E9EDFF;
+  color: #102D50;
+  background: #EAF8FB;
+  border-color: #EAF8FB;
   box-shadow: 0 5px 15px rgba(5, 36, 95, .22);
 }
 
 .actions { display: flex; align-items: center; gap: 18px; }
-.language { background: transparent; color: inherit; border: 1px solid rgba(233, 237, 255, .7); border-radius: 999px; padding: 10px 15px; cursor: pointer; font-size: 14px; font-weight: 700; }
-.language:hover { background: #E9EDFF; color: #1E2A78; }
+.language { background: transparent; color: inherit; border: 1px solid rgba(234, 248, 251, .7); border-radius: 999px; padding: 10px 15px; cursor: pointer; font-size: 14px; font-weight: 700; }
+.language:hover { background: #EAF8FB; color: #102D50; }
 
 .toggle { display: none; background: none; border: 0; font-size: 25px; }
 
@@ -59,8 +59,8 @@
     top: 81px;
     left: 0;
     right: 0;
-    background: #4F6DFF;
-    color: #E9EDFF;
+    background: #176BC1;
+    color: #EAF8FB;
     display: none;
     flex-direction: column;
     padding: 18px 20px 24px;

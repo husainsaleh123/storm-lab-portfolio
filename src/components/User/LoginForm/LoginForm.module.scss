@@ -29,7 +29,7 @@
 
 /* Focus effect for inputs */
 .input:focus {
-  border-color: #4F6DFF;
+  border-color: #078FC4;
   outline: none;
 }
 
@@ -38,7 +38,7 @@
   padding: 12px 25px;
   margin-top: 20px;
   margin-bottom: 10px;
-  background: linear-gradient(180deg, #4F6DFF, #1E2A78);
+  background: linear-gradient(180deg, #078FC4, #102D50);
   color: white;
   font-size: 16px;
   font-weight: 600;
@@ -52,7 +52,7 @@
 
 /* Hover effect for submit button */
 .submitBtn:hover {
-background: linear-gradient(180deg, #1E2A78, #4F6DFF);
+background: linear-gradient(180deg, #102D50, #078FC4);
   transform: scale(1.03);
 }
 

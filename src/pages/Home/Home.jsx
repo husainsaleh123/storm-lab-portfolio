@@ -24,7 +24,6 @@ export default function Home() {
         <a className={styles.roundLink} href="#work" aria-label={t.home.seeWork}>↘</a>
       </div>
     </section>
-    <section className={styles.marquee}><div>{t.home.marquee}</div></section>
     <section className={`${styles.about} ${styles.contentSection}`} id="about" data-reveal>
       <div className={styles.portraitWrap}><img src="/portfolio/14-1137.jpg" alt="Husain Ali"/></div>
       <div className={styles.aboutCopy}><span>{t.home.aboutLabel}</span><h2>{t.home.aboutTitle}</h2><p>{t.home.aboutCopy}</p><div className={styles.skills}><span>Adobe Creative Suite</span><span>Figma</span><span>Brand identity</span><span>Content creation</span></div><a className={styles.aboutButton} href="/about">{t.home.aboutMore} <b>↗</b></a></div>
