@@ -27,12 +27,6 @@ export default function About() {
   }, []);
 
   return <main className={styles.page}>
-    <section className={styles.intro}>
-      <div className={styles.kicker}>About / Husain Ali</div>
-      <h1>Designing the idea<br/>behind the <em>image.</em></h1>
-      <p className={styles.lead}>I’m a multidisciplinary graphic designer based in Bahrain, working across visual identity, digital design, photography and motion.</p>
-    </section>
-
     <section className={styles.story} data-about-reveal>
       <div className={styles.portrait}><img src="/portfolio/14-1137.jpg" alt="Husain Ali" /></div>
       <div className={styles.copy}>

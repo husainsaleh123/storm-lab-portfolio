@@ -23,4 +23,66 @@ $ink:#102D50;$cream:#EAF8FB;$acid:#00A9B5;
 
 .sectionHead{display:block;text-align:left}.sectionHead h2{width:100%;max-width:none;margin-top:25px}
 
-@media(max-width:760px){.page .hero h1{font-size:clamp(42px,11vw,68px);line-height:.94}}
+/* Keep project cards comfortably sized on wide desktop displays. */
+.grid{
+  width:min(100%,1350px);
+  margin-inline:auto;
+}
+
+/* Use one consistent stacked layout for every project card. */
+.grid .projectMeta{
+  display:block;
+  min-height:0;
+  padding:22px 10px 0;
+}
+.grid .projectMeta h3{
+  font-size:clamp(27px,2.5vw,38px);
+  line-height:1;
+}
+.grid .projectMeta>div>p{
+  margin:10px 0 0;
+  color:#6b7280;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.1em;
+}
+.grid .projectLink{
+  width:100%;
+  min-width:0;
+  justify-content:center;
+  gap:12px;
+  margin:40px auto 0;
+  padding:16px 24px;
+  background:#176BC1;
+  font-size:13px;
+  box-shadow:0 8px 18px rgba(23,107,193,.16);
+  transition:background-color .25s ease,box-shadow .25s ease,transform .25s cubic-bezier(.2,.8,.2,1);
+}
+.grid .projectLink:hover,
+.grid .projectLink:focus-visible{
+  background:#102D50;
+  box-shadow:0 14px 28px rgba(16,45,80,.25);
+  transform:translateY(-3px) scale(1.02);
+}
+.grid .projectLink:active{
+  box-shadow:0 5px 12px rgba(16,45,80,.2);
+  transform:translateY(1px) scale(.98);
+}
+.grid .projectLink b{
+  font-size:18px;
+  transition:transform .25s ease;
+}
+.grid .projectLink:hover b,
+.grid .projectLink:focus-visible b{
+  transform:translate(3px,-3px);
+}
+
+:global(html[dir='rtl']) .grid .projectMeta,
+:global(html[dir='rtl']) .grid .projectMeta>div>p{
+  text-align:right;
+}
+
+@media(max-width:760px){
+  .page .hero h1{font-size:clamp(42px,11vw,68px);line-height:.94}
+  .grid .projectLink{width:100%;min-width:0}
+}
