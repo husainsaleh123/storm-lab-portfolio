@@ -50,7 +50,7 @@ textarea {
 
 .submitButton {
   padding: 12px 20px;
-  background: linear-gradient(180deg, #078FC4, #102D50);
+  background: linear-gradient(180deg, #176BC1, #102D50);
   color: white;
   font-family: var(--font-primary);
   font-weight: 700;
@@ -63,6 +63,6 @@ textarea {
 }
 
 .submitButton:hover {
-  background: linear-gradient(180deg, #102D50, #078FC4);
+  background: linear-gradient(180deg, #102D50, #176BC1);
   scale: 1.03;
 }
