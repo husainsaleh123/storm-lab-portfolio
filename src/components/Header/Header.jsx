@@ -7,8 +7,8 @@ import stormLabLogo from '../../assets/images/storm-lab-logo.png';
 const navigation = [
   { id: 'home', href: '/#top' },
   { id: 'about', href: '/about' },
-  { id: 'work', href: '/#work' },
-  { id: 'contact', href: '/#contact' },
+  { id: 'work', href: '/work' },
+  { id: 'contact', href: '/contact' },
 ];
 
 export default function Header() {
@@ -18,7 +18,7 @@ export default function Header() {
   const activePage = () => {
     if (location.pathname === '/about') return 'about';
     if (location.pathname === '/contact') return 'contact';
-    if (location.pathname.startsWith('/work/') || location.pathname.startsWith('/projects')) return 'work';
+    if (location.pathname.startsWith('/work') || location.pathname.startsWith('/projects')) return 'work';
     return 'home';
   };
   const [active, setActive] = useState(activePage);
@@ -26,7 +26,7 @@ export default function Header() {
   useEffect(() => {
     if (location.pathname === '/about') { setActive('about'); return; }
     if (location.pathname === '/contact') { setActive('contact'); return; }
-    if (location.pathname.startsWith('/work/') || location.pathname.startsWith('/projects')) { setActive('work'); return; }
+    if (location.pathname.startsWith('/work') || location.pathname.startsWith('/projects')) { setActive('work'); return; }
     if (location.pathname !== '/') return;
 
     const hashSection = location.hash.slice(1);

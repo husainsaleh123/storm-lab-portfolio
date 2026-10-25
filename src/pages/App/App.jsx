@@ -40,7 +40,8 @@ export default function App() {
         <Route path="/show-contact" element={<ShowContactPage />} />
 
         {/* Projects Routes */}
-        <Route path="/projects" element={<AllProjectsPage />} />
+        <Route path="/work" element={<AllProjectsPage />} />
+        <Route path="/projects" element={<Navigate to="/work" replace />} />
         <Route path="/projects/:id" element={<ShowProjectsPage />} />
         <Route path="/work/:slug" element={<ShowProjectsPage />} />
 

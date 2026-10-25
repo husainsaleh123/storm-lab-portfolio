@@ -39,7 +39,7 @@ export default function About() {
     </section>
 
     <section className={styles.software} data-about-reveal>
-      <header><span>02 / Familiar software</span><h2>Tools I use to<br/><em>make ideas real.</em></h2></header>
+      <header><span>02 / Familiar software</span><h2>Tools I use to <em>make ideas real.</em></h2></header>
       <div className={styles.softwareGrid}>{software.map((item, index) => <article key={item.name}>
         <div className={styles.softwareIcon}>{item.logo ? <img src={item.logo} alt={item.name} /> : item.short}</div><small>0{index + 1}</small><h3>{item.name}</h3><p>{item.use}</p>
       </article>)}</div>

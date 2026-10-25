@@ -49,7 +49,6 @@ export default function Contact() {
       <span className={styles.kicker}>{t.contact.kicker}</span>
       <h1><span className={styles.titleLine}>{t.contact.titleA}</span><span className={styles.titleLine}><em>{t.contact.titleB}</em></span></h1>
       <p className={styles.introText}>{t.contact.intro}</p>
-      <div className={styles.mark}>↘</div>
     </section>
 
     <section className={styles.formSide}>
@@ -66,7 +65,7 @@ export default function Contact() {
           <textarea name="message" rows="6" value={form.message} onChange={update} placeholder={t.contact.messagePlaceholder} aria-invalid={Boolean(errors.message)} />
           {errors.message && <small>{errors.message}</small>}
         </label>
-        <button className={styles.submit} disabled={sending}>{sending ? t.contact.sending : t.contact.send} <b>↗</b></button>
+        <button className={styles.submit} disabled={sending}>{sending ? t.contact.sending : t.contact.send}</button>
         {status.message && <p className={`${styles.status} ${styles[status.type]}`} role="status">{status.message}</p>}
       </form>
     </section>
