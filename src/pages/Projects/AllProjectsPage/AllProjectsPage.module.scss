@@ -4,11 +4,11 @@
 .intro h1{width:100%;margin:32px 0 0;font:400 clamp(64px,11vw,165px)/.84 var(--font-primary);letter-spacing:-.065em;color:#176BC1}
 .intro p{width:100%;margin:clamp(52px,5vw,82px) 0 0;font-size:clamp(18px,2vw,27px);line-height:1.45;color:#000}
 .archive{padding:0 clamp(20px,5vw,72px) clamp(80px,10vw,150px);background:#EAF8FB}
-.filterBar{position:sticky;top:96px;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px 0;border-bottom:1px solid #102D50;background:#EAF8FB}
+.filterBar{position:sticky;top:96px;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px 0;border-bottom:1px solid #176BC1;background:#EAF8FB;color:#176BC1}
 .filters{display:flex;flex-wrap:wrap;gap:9px}
-.filters button{border:1px solid #102D50;border-radius:999px;padding:11px 17px;background:transparent;cursor:pointer;font-size:12px;font-weight:700;letter-spacing:.07em;transition:background .2s,color .2s,transform .2s}
+.filters button{border:1px solid #176BC1;border-radius:999px;padding:11px 17px;background:transparent;color:#176BC1;cursor:pointer;font-size:12px;font-weight:700;letter-spacing:.07em;transition:background .2s,color .2s,transform .2s}
 .filters button:hover{transform:translateY(-2px)}
-.filters button.active{background:#102D50;color:#EAF8FB}
+.filters button.active{background:#176BC1;color:#EAF8FB}
 .filterBar>p{flex:0 0 auto;margin:0;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;gap:30px;padding-top:56px}
 .card{display:flex;min-width:0;padding:15px;flex-direction:column;background:#fff;border:1px solid #d7dde3;border-radius:22px;overflow:hidden;box-shadow:0 10px 28px rgba(16,45,80,.04)}

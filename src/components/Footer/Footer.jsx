@@ -3,9 +3,9 @@ import styles from './Footer.module.scss';
 import { useLanguage } from '../../context/LanguageContext';
 
 const socialProfiles = [
-  { name: 'Instagram', href: 'https://www.instagram.com/', icon: 'instagram' },
-  { name: 'LinkedIn', href: 'https://www.linkedin.com/', icon: 'linkedin' },
-  { name: 'WhatsApp', href: 'https://wa.me/', icon: 'whatsapp' },
+  { name: 'Instagram', href: 'https://www.instagram.com/dar.altawawish/', icon: 'instagram' },
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/hussain-saleh-0a34b120a/', icon: 'linkedin' },
+  { name: 'WhatsApp', href: 'https://wa.me/97333100752', icon: 'whatsapp' },
   { name: 'Gmail', href: 'mailto:hussainsaleh180@gmail.com', icon: 'envelope' },
 ];
 
