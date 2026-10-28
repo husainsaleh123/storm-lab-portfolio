@@ -6,6 +6,7 @@ import afterEffectsLogo from '../../assets/images/adobe-after-effects.png';
 import figmaLogo from '../../assets/images/figma.jpg';
 import premiereProLogo from '../../assets/images/premier-pro.png';
 import canvaLogo from '../../assets/images/canva.png';
+import personalPic from '../../assets/images/personl-pic.png';
 
 const software = [
   { name: 'Adobe Photoshop', short: 'Ps', logo: photoshopLogo, use: 'Image editing & compositing' },
@@ -28,13 +29,13 @@ export default function About() {
 
   return <main className={styles.page}>
     <section className={styles.story} data-about-reveal>
-      <div className={styles.portrait}><img src="/portfolio/14-1137.jpg" alt="Husain Ali" /></div>
+      <div className={styles.portrait}><img src={personalPic} alt="Husain Ali" /></div>
       <div className={styles.copy}>
         <span>01 / My approach</span>
         <h2>Curious by nature.<br/>Clear by design.</h2>
         <p>I work across graphic design, interfaces, photography and motion. My approach is curious, collaborative and grounded in the belief that good design should feel effortless—even when the thinking behind it isn’t.</p>
         <p>I enjoy turning early ideas into thoughtful visual systems: finding the right concept, refining the details and creating work that communicates with clarity and character.</p>
-        <a href="/contact">Work with me <b>↗</b></a>
+        <a href="/contact">Work with me</a>
       </div>
     </section>
 

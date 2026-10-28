@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import styles from './Home.module.scss';
 import { portfolioProjects as projects } from '../../data/portfolioProjects';
 import { useLanguage } from '../../context/LanguageContext';
+import personalPic from '../../assets/images/personl-pic.png';
 
 export default function Home() {
   const { language, t } = useLanguage();
@@ -28,7 +29,7 @@ export default function Home() {
       </div>
     </section>
     <section className={`${styles.about} ${styles.contentSection}`} id="about" data-reveal>
-      <div className={styles.portraitWrap}><img src="/portfolio/14-1137.jpg" alt="Husain Ali"/></div>
+      <div className={styles.portraitWrap}><img src={personalPic} alt="Husain Ali"/></div>
       <div className={styles.aboutCopy}><span>{t.home.aboutLabel}</span><h2>{t.home.aboutTitle}</h2><p>{t.home.aboutCopy}</p><div className={styles.skills}><span>Adobe Creative Suite</span><span>Figma</span><span>Brand identity</span><span>Content creation</span></div><a className={styles.aboutButton} href="/about">{t.home.aboutMore}</a></div>
     </section>
     <section className={`${styles.work} ${styles.contentSection}`} id="work">
