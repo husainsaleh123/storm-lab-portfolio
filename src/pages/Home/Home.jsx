@@ -30,7 +30,7 @@ export default function Home() {
     </section>
     <section className={`${styles.about} ${styles.contentSection}`} id="about" data-reveal>
       <div className={styles.portraitWrap}><img src={personalPic} alt="Husain Ali"/></div>
-      <div className={styles.aboutCopy}><span>{t.home.aboutLabel}</span><h2>{t.home.aboutTitle}</h2><p>{t.home.aboutCopy}</p><div className={styles.skills}><span>Adobe Creative Suite</span><span>Figma</span><span>Brand identity</span><span>Content creation</span></div><a className={styles.aboutButton} href="/about">{t.home.aboutMore}</a></div>
+      <div className={styles.aboutCopy}><span>{t.home.aboutLabel}</span><h2>{t.home.aboutTitleA}<br/><em>{t.home.aboutTitleB}</em></h2><p>{t.home.aboutCopyA}</p><p>{t.home.aboutCopyB}</p><div className={styles.skills}><span>Adobe Creative Suite</span><span>Figma</span><span>Brand identity</span><span>Content creation</span></div><a className={styles.aboutButton} href="/about">{t.home.aboutMore}</a></div>
     </section>
     <section className={`${styles.work} ${styles.contentSection}`} id="work">
       <header className={styles.sectionHead} data-reveal><span>{t.home.selected}</span><h2>{t.home.workTitle}</h2></header>

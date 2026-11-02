@@ -13,7 +13,7 @@ export default function Footer() {
   const { t } = useLanguage();
 
   return <footer className={styles.footer}>
-    <b>Storm Lab</b>
+    <b><em>Clear by design.</em></b>
     <p>{t.footer}</p>
     <nav className={styles.socials} aria-label="Social media profiles">
       {socialProfiles.map(profile => <a key={profile.name} href={profile.href} target={profile.href.startsWith('http') ? '_blank' : undefined} rel={profile.href.startsWith('http') ? 'noreferrer' : undefined} aria-label={profile.name} title={profile.name}>

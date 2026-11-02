@@ -32,9 +32,9 @@ export default function About() {
       <div className={styles.portrait}><img src={personalPic} alt="Husain Ali" /></div>
       <div className={styles.copy}>
         <span>01 / My approach</span>
-        <h2>Curious by nature.<br/>Clear by design.</h2>
-        <p>I work across graphic design, interfaces, photography and motion. My approach is curious, collaborative and grounded in the belief that good design should feel effortless—even when the thinking behind it isn’t.</p>
-        <p>I enjoy turning early ideas into thoughtful visual systems: finding the right concept, refining the details and creating work that communicates with clarity and character.</p>
+        <h2>Curious by nature.<br/><em>Clear by design.</em></h2>
+        <p>I&apos;m Husain Ali, a multimedia designer combining creative thinking with marketing strategy to help brands stand out, connect with their audiences, and achieve business goals.</p>
+        <p>From brand identities and digital experiences to motion graphics and content creation, I focus on delivering purposeful solutions that go beyond aesthetics.</p>
         <a href="/contact">Work with me</a>
       </div>
     </section>
