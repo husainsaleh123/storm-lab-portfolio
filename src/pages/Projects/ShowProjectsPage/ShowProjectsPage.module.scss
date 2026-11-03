@@ -7,3 +7,6 @@
 .summary{background:#FFF;box-shadow:0 0 0 100vmax #FFF;clip-path:inset(0 -100vmax)}
 .caseStudy{background:#FFF}
 .caseStudy p{white-space:pre-line}
+.next{background:#EAF8FB;color:#000}
+.imagePrompt{display:inline;margin-inline-start:.35em;color:#176BC1;font-style:italic;font-weight:600}
+@media(min-width:751px){.hero .compactTitle{font-size:clamp(52px,7.2vw,112px);white-space:nowrap}}
