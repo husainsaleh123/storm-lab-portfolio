@@ -1,0 +1,5 @@
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.tags span{display:inline-block;padding:9px 14px;border:1px solid #cbdfea;border-radius:999px;background:#eaf8fb;color:#102d50;font-size:11px;font-weight:600;line-height:1.4;letter-spacing:.04em;animation:arrive .55s var(--tag-delay) ease backwards;transition:transform .25s ease,background .25s ease,box-shadow .25s ease}
+.tags span:hover{transform:translateY(-3px);background:#d7eef5;box-shadow:0 5px 12px rgba(16,45,80,.1)}
+@keyframes arrive{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.tags span{animation:none;transition:none}.tags span:hover{transform:none}}

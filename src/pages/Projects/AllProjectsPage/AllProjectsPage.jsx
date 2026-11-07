@@ -1,3 +1,4 @@
+import ProjectMetadata from '../../../components/ProjectMetadata/ProjectMetadata';
 import React, { useMemo, useState } from 'react';
 import { portfolioProjects } from '../../../data/portfolioProjects';
 import { useLanguage } from '../../../context/LanguageContext';
@@ -38,7 +39,7 @@ export default function AllProjectsPage() {
               <span>{String(index + 1).padStart(2, '0')}</span>
             </div>
             <div className={styles.meta}>
-              <div><h2>{title}</h2><p>{project.type}</p></div>
+              <div>{project.client && <span className={styles.clientName}>{language === 'ar' ? project.clientAr : project.client}</span>}<h2>{title}</h2>{project.client ? <ProjectMetadata project={project}/> : <p>{project.type}</p>}</div>
               <span className={styles.year}>{project.year}</span>
               <span className={styles.view}>{text.view}</span>
             </div>

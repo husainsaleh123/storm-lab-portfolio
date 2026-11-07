@@ -10,3 +10,9 @@
 .next{background:#EAF8FB;color:#000}
 .imagePrompt{display:inline;margin-inline-start:.35em;color:#176BC1;font-style:italic;font-weight:600}
 @media(min-width:751px){.hero .compactTitle{font-size:clamp(52px,7.2vw,112px);white-space:nowrap}}
+
+.heroMetadata{justify-self:end}
+.heroMetadata>div{margin-top:0;justify-content:flex-end}
+.hero .clientName{grid-column:1/-1;margin-top:55px;margin-bottom:-15px;color:#102d50;font-size:clamp(14px,1.4vw,19px);font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.hero .clientName+h1{margin-top:0;white-space:normal;max-width:1100px;line-height:1}
+@media(max-width:750px){.heroMetadata{align-self:flex-start}.heroMetadata>div{justify-content:flex-start}.hero .clientName{margin-top:25px;margin-bottom:0}.hero .clientName+h1{margin-top:0}}

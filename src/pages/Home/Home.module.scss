@@ -95,3 +95,5 @@ $ink:#102D50;$cream:#EAF8FB;$acid:#00A9B5;
   .page .hero h1{font-size:clamp(42px,11vw,68px);line-height:.94}
   .grid .projectLink{width:100%;min-width:0}
 }
+
+.grid .projectMeta .clientName{display:block;margin-bottom:10px;color:#176bc1;font-size:12px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
