@@ -35,6 +35,7 @@ export default function About() {
         <h2>Curious by nature.<br/><em>Clear by design.</em></h2>
         <p>I&apos;m Husain Ali, a multimedia designer combining creative thinking with marketing strategy to help brands stand out, connect with their audiences, and achieve business goals.</p>
         <p>From brand identities and digital experiences to motion graphics and content creation, I focus on delivering purposeful solutions that go beyond aesthetics.</p>
+        <p>Storm Lab brings together the energy of a storm and the curiosity of a creative lab. The storm represents a rush of ideas, while the lab is where I experiment, refine, and give those ideas direction. Together, they reflect how I turn creative energy into thoughtful design with a clear purpose.</p>
         <a href="/contact">Work with me</a>
       </div>
     </section>
