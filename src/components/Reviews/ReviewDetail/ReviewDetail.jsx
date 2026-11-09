@@ -1,7 +1,7 @@
 // src/components/Reviews/ReviewDetail/ReviewDetail.jsx
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faEnvelope, faStar, faArrowLeft, faMessage } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faEnvelope, faStar, faMessage } from '@fortawesome/free-solid-svg-icons';
 import styles from '../ReviewDetail/ReviewDetail.module.scss';
 import { Link } from 'react-router-dom';
 
@@ -39,7 +39,7 @@ const ReviewDetail = ({ review }) => {
           </div>
             <button className={styles.backButton}>
               <Link to="/reviews" className={styles.addReviewBtn}>
-                <FontAwesomeIcon icon={faArrowLeft} className={styles.icon} /> Back
+                Back
               </Link>
             </button>
         </div>
